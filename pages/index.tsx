@@ -1,4 +1,4 @@
-import React from 'react';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import ThemeToggle from '../components/ThemeToggle';
@@ -6,77 +6,92 @@ import Education from '../components/Education';
 import Skills from '../components/Skills';
 import Projects from '../components/Projects';
 
-const Home: React.FC = () => {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2,
-            },
-        },
-    };
+const Home = () => {
+  const profileName = 'Mohit Kumar';
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.5 },
-        },
-    };
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
 
-    return (
-        <div className="min-h-screen bg-background text-text">
-            <Navbar />
-            <div className="absolute top-4 right-4">
-                <ThemeToggle />
-            </div>
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.45, ease: 'easeOut' },
+    },
+  };
 
-            <motion.div
-                className="max-w-4xl mx-auto px-6 py-12"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-            >
-                {/* Hero Section */}
-                <motion.div variants={itemVariants} className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold text-text mb-4">
-                        Hi, I'm [Your Name]
-                    </h1>
-                    <p className="text-lg text-gray-400 mb-2">
-                        Full-Stack Developer & UI/UX Enthusiast
-                    </p>
-                    <p className="text-gray-500 max-w-2xl">
-                        I build beautiful, functional web applications with a focus on minimalist design
-                        and user experience. Specializing in React, TypeScript, and modern web technologies.
-                    </p>
-                </motion.div>
+  return (
+    <div className="min-h-screen bg-background bg-grid-subtle bg-grid bg-radial-fade text-text">
+      <Head>
+        <title>{`${profileName} | Portfolio`}</title>
+        <meta
+          name="description"
+          content="Portfolio of Mohit Kumar, a frontend-focused full-stack developer building performant, accessible, and scalable web applications."
+        />
+      </Head>
 
-                {/* Education Section */}
-                <motion.div variants={itemVariants} className="mb-12">
-                    <Education />
-                </motion.div>
+      <Navbar />
+      <div className="fixed right-4 top-20 z-50 md:top-4">
+        <ThemeToggle />
+      </div>
 
-                {/* Skills Section */}
-                <motion.div variants={itemVariants} className="mb-12">
-                    <Skills />
-                </motion.div>
+      <motion.main
+        className="mx-auto max-w-4xl px-6 py-12 md:py-16"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.section
+          id="home"
+          className="mb-16 scroll-mt-24 py-20"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+        >
+          <h1 className="mb-4 text-4xl font-bold tracking-tight text-text md:text-6xl">
+            Hi, I&apos;m {profileName}
+          </h1>
+          <p className="mb-4 text-base text-zinc-600 dark:text-zinc-300 md:text-lg">
+            Full-Stack Developer and UI/UX Enthusiast
+          </p>
+          <p className="max-w-3xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
+            I build thoughtful, high-performing web applications with clean interfaces and
+            accessible interactions. I specialize in React, TypeScript, and modern frontend
+            architecture.
+          </p>
+        </motion.section>
 
-                {/* Projects Section */}
-                <motion.div variants={itemVariants} className="mb-12">
-                    <Projects />
-                </motion.div>
+        <motion.div variants={itemVariants} className="mb-12">
+          <Education />
+        </motion.div>
 
-                {/* Footer */}
-                <motion.div variants={itemVariants} className="py-8 border-t border-gray-700 mt-12">
-                    <p className="text-center text-gray-500">
-                        © 2026 [Your Name]. All rights reserved.
-                    </p>
-                </motion.div>
-            </motion.div>
-        </div>
-    );
+        <motion.div variants={itemVariants} className="mb-12">
+          <Skills />
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="mb-12">
+          <Projects />
+        </motion.div>
+
+        <motion.footer
+          variants={itemVariants}
+          className="mt-14 border-t border-zinc-200 py-8 dark:border-zinc-800"
+        >
+          <p className="text-center text-zinc-500 dark:text-zinc-400">
+            &copy; 2026 {profileName}. All rights reserved.
+          </p>
+        </motion.footer>
+      </motion.main>
+    </div>
+  );
 };
 
 export default Home;

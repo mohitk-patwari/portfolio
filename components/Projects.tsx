@@ -1,51 +1,46 @@
-import React from 'react';
-import ProjectCard from './ProjectCard';
+import ProjectCard, { ProjectCardProps } from './ProjectCard';
 
-interface Project {
-    title: string;
-    description: string;
-    techStack: string[];
-    repoUrl: string;
-}
-
-const projectsData: Project[] = [
-    {
-        title: 'E-Commerce Platform',
-        description: 'A full-stack e-commerce platform built with Next.js and PostgreSQL, featuring real-time inventory management and payment processing.',
-        techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'PostgreSQL'],
-        repoUrl: 'https://github.com/yourusername/ecommerce-platform',
-    },
-    {
-        title: 'Task Management App',
-        description: 'A collaborative task management application with real-time updates, user authentication, and drag-and-drop functionality.',
-        techStack: ['React', 'Firebase', 'Framer Motion', 'TypeScript'],
-        repoUrl: 'https://github.com/yourusername/task-manager',
-    },
-    {
-        title: 'Portfolio Website',
-        description: 'A minimalist personal portfolio website showcasing projects and skills with dark mode support and smooth animations.',
-        techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-        repoUrl: 'https://github.com/yourusername/portfolio',
-    },
+const projectsData: ProjectCardProps[] = [
+  {
+    title: 'E-Commerce Platform',
+    description:
+      'A full-stack commerce app with real-time inventory workflows and secure payment processing.',
+    techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'PostgreSQL'],
+    repoUrl: 'https://github.com/mohit/ecommerce-platform',
+  },
+  {
+    title: 'Task Management App',
+    description:
+      'A collaborative task manager with auth, drag-and-drop boards, and live task synchronization.',
+    techStack: ['React', 'Firebase', 'Framer Motion', 'TypeScript'],
+    repoUrl: 'https://github.com/mohit/task-manager',
+  },
+  {
+    title: 'Portfolio Website',
+    description:
+      'A performance-focused developer portfolio with theme support and motion-enhanced interactions.',
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    repoUrl: 'https://github.com/mohit/portfolio',
+  },
 ];
 
-const Projects: React.FC = () => {
-    return (
-        <div className="p-4" id="projects">
-            <h2 className="text-xl font-bold text-text mb-6">Projects</h2>
-            <div>
-                {projectsData.map((project, index) => (
-                    <ProjectCard
-                        key={index}
-                        title={project.title}
-                        description={project.description}
-                        techStack={project.techStack}
-                        repoUrl={project.repoUrl}
-                    />
-                ))}
-            </div>
-        </div>
-    );
+const Projects = () => {
+  return (
+    <section id="projects" className="scroll-mt-24 p-4">
+      <h2 className="mb-6 text-xl font-semibold tracking-tight text-text md:text-2xl">Projects</h2>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {projectsData.map((project) => (
+          <ProjectCard
+            key={project.title}
+            title={project.title}
+            description={project.description}
+            techStack={project.techStack}
+            repoUrl={project.repoUrl}
+          />
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default Projects;

@@ -2,7 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+:root {
+  --color-background: 255 255 255;
+  --color-foreground: 24 24 27;
+}
+
+.dark {
+  --color-background: 9 9 11;
+  --color-foreground: 244 244 245;
+}
+
 body {
-  background-color: theme('colors.background');
-  color: theme('colors.text');
+  @apply bg-white text-zinc-900 antialiased transition-colors duration-300;
+}
+
+.dark body {
+  @apply bg-zinc-950 text-zinc-100;
 }

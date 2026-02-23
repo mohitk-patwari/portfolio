@@ -43,7 +43,7 @@ const Project2: React.FC = () => {
 
                 <div className="flex gap-4">
                     <a
-                        href="https://github.com/yourusername/task-manager"
+                        href="https://github.com/mohit/task-manager"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 bg-gray-800 text-text px-4 py-2 rounded hover:bg-gray-700 transition"
