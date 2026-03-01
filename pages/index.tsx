@@ -125,7 +125,7 @@ const Home = () => {
           <motion.p variants={childVariants} className="mt-6 text-sm text-zinc-600 dark:text-zinc-300">
             Connect on{' '}
             <a
-              href="https://www.linkedin.com"
+              href="www.linkedin.com/in/mohit-kumar-patwari"
               target="_blank"
               rel="noreferrer"
               className="font-medium text-primary hover:underline"
@@ -134,7 +134,7 @@ const Home = () => {
             </a>{' '}
             and{' '}
             <a
-              href="https://github.com"
+              href="https://github.com/mohitk-patwari"
               target="_blank"
               rel="noreferrer"
               className="font-medium text-primary hover:underline"

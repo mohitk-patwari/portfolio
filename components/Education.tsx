@@ -9,16 +9,16 @@ interface EducationItem {
 
 const educationData: EducationItem[] = [
   {
-    degree: 'Bachelor of Science in Computer Science',
-    institute: 'University A',
-    year: '2022',
-    gpa: 'GPA 3.8/4.0',
+    degree: 'BE in Computer Science and Engineering',
+    institute: 'Ramaiah Institute of Technology',
+    year: '2027',
+    gpa: 'GPA 7.97/10.00',
   },
   {
-    degree: 'Master of Science in Software Engineering',
-    institute: 'University B',
-    year: '2024',
-    gpa: 'GPA 3.9/4.0',
+    degree: 'Snr. Secondary Schooling',
+    institute: 'Vidhyashram Public School',
+    year: '2023',
+    gpa: 'Score 81.2 %',
   },
 ];
 
