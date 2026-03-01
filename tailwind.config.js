@@ -4,26 +4,41 @@ const colors = require('tailwindcss/colors');
 module.exports = {
   darkMode: 'class',
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    container: {
+      center: true,
+      screens: {
+        '2xl': '72rem',
+      },
+    },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+      },
       colors: {
         zinc: colors.zinc,
         slate: colors.slate,
         primary: '#3b82f6',
+        surface: 'rgb(var(--color-surface) / <alpha-value>)',
+        muted: 'rgb(var(--color-muted) / <alpha-value>)',
+        border: 'rgb(var(--color-border) / <alpha-value>)',
         background: 'rgb(var(--color-background) / <alpha-value>)',
         text: 'rgb(var(--color-foreground) / <alpha-value>)',
       },
       backgroundImage: {
-        'grid-subtle':
-          'linear-gradient(to right, rgb(113 113 122 / 0.12) 1px, transparent 1px), linear-gradient(to bottom, rgb(113 113 122 / 0.12) 1px, transparent 1px)',
-        'radial-fade':
-          'radial-gradient(circle at top center, rgb(59 130 246 / 0.14), transparent 55%)',
+        'subtle-grid': 'radial-gradient(circle at 1px 1px, rgb(100 116 139 / 0.16) 1px, transparent 0)',
       },
       backgroundSize: {
-        grid: '28px 28px',
+        grid: '24px 24px',
+      },
+      transitionDuration: {
+        DEFAULT: '200ms',
+      },
+      transitionTimingFunction: {
+        DEFAULT: 'ease-in-out',
       },
     },
   },

@@ -4,6 +4,7 @@ interface EducationItem {
   degree: string;
   institute: string;
   year: string;
+  gpa: string;
 }
 
 const educationData: EducationItem[] = [
@@ -11,31 +12,39 @@ const educationData: EducationItem[] = [
     degree: 'Bachelor of Science in Computer Science',
     institute: 'University A',
     year: '2022',
+    gpa: 'GPA 3.8/4.0',
   },
   {
     degree: 'Master of Science in Software Engineering',
     institute: 'University B',
     year: '2024',
+    gpa: 'GPA 3.9/4.0',
   },
 ];
 
 const Education: React.FC = () => {
   return (
-    <section id="education" className="p-4 scroll-mt-24">
-      <h2 className="mb-5 text-xl font-semibold tracking-tight text-text md:text-2xl">
+    <section id="education" className="scroll-mt-24 py-4" aria-labelledby="education-heading">
+      <h2
+        id="education-heading"
+        className="mb-6 text-2xl font-semibold tracking-tight text-text md:text-3xl"
+      >
         Education
       </h2>
-      <ul className="space-y-3">
+
+      <ul className="space-y-6 border-l border-zinc-200 pl-5 dark:border-zinc-800">
         {educationData.map((item) => (
-          <li
-            key={`${item.degree}-${item.year}`}
-            className="rounded-xl border border-zinc-200/80 px-4 py-3 text-sm text-zinc-700 dark:border-zinc-800 dark:text-zinc-300 md:text-base"
-          >
-            <span className="font-medium text-zinc-900 dark:text-zinc-100">{item.degree}</span>
-            <span className="mx-2 text-zinc-400 dark:text-zinc-600">|</span>
-            <span>{item.institute}</span>
-            <span className="mx-2 text-zinc-400 dark:text-zinc-600">|</span>
-            <span>{item.year}</span>
+          <li key={`${item.degree}-${item.year}`} className="flex items-start justify-between gap-4">
+            <p className="leading-relaxed text-zinc-700 dark:text-zinc-300">
+              <span className="font-medium text-zinc-900 dark:text-zinc-100">{item.degree}</span>
+              <span className="mx-2 text-zinc-400 dark:text-zinc-600">|</span>
+              <span>{item.institute}</span>
+              <span className="mx-2 text-zinc-400 dark:text-zinc-600">|</span>
+              <span>{item.year}</span>
+            </p>
+            <span className="whitespace-nowrap rounded-full border border-zinc-200 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
+              {item.gpa}
+            </span>
           </li>
         ))}
       </ul>

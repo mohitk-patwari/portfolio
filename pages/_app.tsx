@@ -7,10 +7,12 @@ export default function App({ Component, pageProps }: AppProps) {
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
-      enableSystem
+      enableSystem={true}
       disableTransitionOnChange
     >
-      <Component {...pageProps} />
+      <div className="max-w-6xl mx-auto px-6">
+        <Component {...pageProps} />
+      </div>
     </ThemeProvider>
   );
 }
