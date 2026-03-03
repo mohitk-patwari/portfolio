@@ -1,75 +1,47 @@
 import {
-  useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
-  type KeyboardEvent as ReactKeyboardEvent,
-  type MouseEvent,
-} from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { FiMenu, FiX } from 'react-icons/fi';
+  type MouseEvent as ReactMouseEvent,
+} from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { HiMenuAlt3, HiX } from "react-icons/hi";
 
-type SectionId = 'about' | 'education' | 'skills' | 'projects';
+type SectionId = "home" | "about" | "education" | "skills" | "projects";
 
-interface NavItem {
-  href: `#${SectionId}`;
-  label: string;
+type NavItem = {
   id: SectionId;
-}
-
-const navItems: NavItem[] = [
-  { href: '#about', label: 'About', id: 'about' },
-  { href: '#education', label: 'Education', id: 'education' },
-  { href: '#skills', label: 'Skills', id: 'skills' },
-  { href: '#projects', label: 'Projects', id: 'projects' },
-];
-
-const sectionTargets: Record<SectionId, string[]> = {
-  about: ['about', 'home'],
-  education: ['education'],
-  skills: ['skills'],
-  projects: ['projects'],
+  label: string;
+  href: `#${SectionId}`;
 };
 
-const focusableSelector =
-  'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+const navItems: NavItem[] = [
+  { id: "home", label: "Home", href: "#home" },
+  { id: "about", label: "About", href: "#about" },
+  { id: "education", label: "Education", href: "#education" },
+  { id: "skills", label: "Skills", href: "#skills" },
+  { id: "projects", label: "Projects", href: "#projects" },
+];
 
 const Navbar = () => {
-  const [activeSection, setActiveSection] = useState<SectionId>('about');
+  const [activeSection, setActiveSection] = useState<SectionId>("home");
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const navRef = useRef<HTMLElement | null>(null);
 
-  const drawerRef = useRef<HTMLElement | null>(null);
-  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
-  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
+  const sectionIds = useMemo(
+    () => new Set<SectionId>(navItems.map((item) => item.id)),
+    []
+  );
 
-  const resolveSection = useCallback((sectionId: SectionId): HTMLElement | null => {
-    const targetIds = sectionTargets[sectionId];
+  useEffect(() => {
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>("section[id]")
+    ).filter((section) => sectionIds.has(section.id as SectionId));
 
-    for (const id of targetIds) {
-      const element = document.getElementById(id);
-      if (element) {
-        return element;
-      }
+    if (sections.length === 0) {
+      return;
     }
-
-    return null;
-  }, []);
-
-  const observedSections = useMemo<SectionId[]>(() => navItems.map((item) => item.id), []);
-
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 50);
-
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => {
-    const elementToSection = new Map<Element, SectionId>();
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -77,236 +49,182 @@ const Navbar = () => {
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-        const topEntry = visible[0];
-        if (!topEntry) {
+        if (!visible[0]) {
           return;
         }
 
-        const sectionId = elementToSection.get(topEntry.target);
-        if (sectionId) {
-          setActiveSection(sectionId);
-        }
+        setActiveSection(visible[0].target.id as SectionId);
       },
       {
-        rootMargin: '-22% 0px -58% 0px',
+        rootMargin: "-28% 0px -52% 0px",
         threshold: [0.2, 0.4, 0.6],
       }
     );
 
-    observedSections.forEach((sectionId) => {
-      const element = resolveSection(sectionId);
-      if (element) {
-        elementToSection.set(element, sectionId);
-        observer.observe(element);
-      }
-    });
-
+    sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, [observedSections, resolveSection]);
+  }, [sectionIds]);
+
+  useEffect(() => {
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onEscape);
+    return () => window.removeEventListener("keydown", onEscape);
+  }, []);
 
   useEffect(() => {
     if (!isMobileOpen) {
       return;
     }
 
-    previouslyFocusedRef.current = document.activeElement as HTMLElement;
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const onOutsideClick = (event: globalThis.MouseEvent) => {
+      if (!navRef.current) {
+        return;
+      }
 
-    const focusDrawer = () => {
-      const focusable = drawerRef.current?.querySelectorAll<HTMLElement>(focusableSelector);
-      focusable?.[0]?.focus();
-    };
-
-    focusDrawer();
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      const target = event.target as Node;
+      if (!navRef.current.contains(target)) {
         setIsMobileOpen(false);
-        return;
-      }
-
-      if (event.key !== 'Tab' || !drawerRef.current) {
-        return;
-      }
-
-      const focusable = Array.from(
-        drawerRef.current.querySelectorAll<HTMLElement>(focusableSelector)
-      ).filter((element) => !element.hasAttribute('disabled'));
-
-      if (focusable.length === 0) {
-        event.preventDefault();
-        return;
-      }
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      const activeElement = document.activeElement as HTMLElement;
-
-      if (event.shiftKey && activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && activeElement === last) {
-        event.preventDefault();
-        first.focus();
       }
     };
 
-    document.addEventListener('keydown', onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("mousedown", onOutsideClick as EventListener);
 
     return () => {
-      document.body.style.overflow = originalOverflow;
-      document.removeEventListener('keydown', onKeyDown);
-      menuButtonRef.current?.focus();
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("mousedown", onOutsideClick as EventListener);
     };
   }, [isMobileOpen]);
 
-  const handleNavigate =
-    (sectionId: SectionId) => (event: MouseEvent<HTMLAnchorElement> | ReactKeyboardEvent) => {
-      event.preventDefault();
-      const section = resolveSection(sectionId);
-
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY < 120) {
+        setActiveSection("home");
       }
-
-      window.history.replaceState(null, '', `#${sectionId}`);
-      setActiveSection(sectionId);
-      setIsMobileOpen(false);
     };
 
-  const navContainerClass = isScrolled
-    ? 'bg-white/80 shadow-sm dark:bg-zinc-950/80'
-    : 'bg-white/55 dark:bg-zinc-950/55';
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const onNavigate =
+    (id: SectionId) => (event: ReactMouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      const target = document.getElementById(id);
+
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else if (id === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      setActiveSection(id);
+      setIsMobileOpen(false);
+      window.history.replaceState(null, "", `#${id}`);
+    };
+
+  const linkClass =
+    "cyber-focus relative px-1 py-2 font-mono text-sm text-butter/70 transition-colors duration-200 hover:text-tealcyber focus-visible:rounded-sm";
 
   return (
-    <header className="sticky top-0 z-40">
-      <nav
-        className={`border-b border-zinc-200 backdrop-blur-md transition-colors dark:border-zinc-800 ${navContainerClass}`}
-        aria-label="Primary"
-      >
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
-          <a
-            href="#about"
-            onClick={handleNavigate('about')}
-            className="text-lg font-semibold tracking-tight text-zinc-900 transition-colors hover:text-primary dark:text-zinc-100"
-            aria-label="Back to top"
-          >
-            M.
-          </a>
+    <header
+      ref={navRef}
+      className="fixed left-1/2 top-4 z-50 w-[92vw] max-w-3xl -translate-x-1/2 rounded-2xl border border-borderline bg-[rgba(13,45,82,0.75)] px-6 py-3 shadow-[0_0_0_1px_#3dd6c820,0_0_40px_#0a162880] backdrop-blur-xl"
+    >
+      <nav className="flex items-center justify-between" aria-label="Primary">
+        <a
+          href="#home"
+          onClick={onNavigate("home")}
+          className="cyber-focus flex items-center gap-2 focus-visible:rounded-sm"
+          aria-label="Go to home section"
+        >
+          <span className="font-display text-xl text-lemon glow-lemon">M.</span>
+          <span className="rounded-full border border-tealcyber/30 bg-tealcyber/10 px-2 py-0.5 font-mono text-xs text-tealcyber">
+            v2.0
+          </span>
+        </a>
 
-          <ul className="hidden items-center gap-1 rounded-full border border-zinc-200/80 bg-zinc-100/70 p-1 md:flex dark:border-zinc-700 dark:bg-zinc-900/80">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id;
+        <ul className="hidden items-center gap-5 md:flex">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <li key={item.id} className="relative">
+                <a
+                  href={item.href}
+                  onClick={onNavigate(item.id)}
+                  className={`${linkClass} ${isActive ? "text-lemon glow-lemon" : ""}`}
+                  aria-current={isActive ? "location" : undefined}
+                >
+                  {item.label}
+                </a>
+                {isActive && (
+                  <motion.span
+                    layoutId="navline"
+                    className="absolute -bottom-0.5 left-0 h-[2px] w-full bg-lemon"
+                    transition={{ type: "spring", stiffness: 500, damping: 34 }}
+                  />
+                )}
+              </li>
+            );
+          })}
+        </ul>
 
-              return (
-                <li key={item.id} className="relative">
-                  <a
-                    href={item.href}
-                    onClick={handleNavigate(item.id)}
-                    className={`relative z-10 block rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
-                      isActive
-                        ? 'text-zinc-900 dark:text-zinc-50'
-                        : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
-                    }`}
-                    aria-current={isActive ? 'location' : undefined}
-                  >
-                    {isActive && (
-                      <motion.span
-                        layoutId="active-nav-pill"
-                        className="absolute inset-0 -z-10 rounded-full bg-white shadow-sm dark:bg-zinc-800"
-                        transition={{ type: 'spring', stiffness: 420, damping: 34 }}
-                      />
-                    )}
-                    {item.label}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-
-          <button
-            ref={menuButtonRef}
-            type="button"
-            onClick={() => setIsMobileOpen((open) => !open)}
-            aria-label={isMobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={isMobileOpen}
-            aria-controls="mobile-navigation"
-            className="inline-flex items-center justify-center rounded-lg border border-zinc-200 p-2 text-zinc-700 transition-colors hover:border-primary hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 md:hidden dark:border-zinc-700 dark:text-zinc-200"
-          >
-            {isMobileOpen ? <FiX size={18} /> : <FiMenu size={18} />}
-          </button>
+        <div className="hidden items-center md:flex">
+          <span className="h-2 w-2 rounded-full bg-tealcyber animate-pulse-slow" />
+          <span className="ml-1 font-mono text-xs text-tealcyber/70">ONLINE</span>
         </div>
+
+        <button
+          type="button"
+          onClick={() => setIsMobileOpen((prev) => !prev)}
+          className="cyber-focus inline-flex items-center justify-center rounded-md p-1.5 text-butter md:hidden"
+          aria-label={isMobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMobileOpen}
+        >
+          {isMobileOpen ? <HiX size={22} /> : <HiMenuAlt3 size={22} />}
+        </button>
       </nav>
 
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
-            className="fixed inset-0 z-50 md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="mt-2 rounded-2xl border border-borderline bg-royal/95 p-4 backdrop-blur-xl md:hidden"
           >
-            <button
-              type="button"
-              className="absolute inset-0 h-full w-full bg-zinc-900/35"
-              onClick={() => setIsMobileOpen(false)}
-              aria-label="Close navigation drawer"
-            />
-
-            <motion.aside
-              ref={drawerRef}
-              id="mobile-navigation"
-              role="dialog"
-              aria-modal="true"
-              aria-label="Mobile navigation"
-              className="absolute right-0 top-0 h-full w-72 border-l border-zinc-200 bg-white p-6 shadow-xl dark:border-zinc-800 dark:bg-zinc-950"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ duration: 0.24, ease: 'easeOut' }}
-              onClick={(event) => event.stopPropagation()}
-            >
-              <div className="mb-5 flex items-center justify-between">
-                <span className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
-                  Menu
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setIsMobileOpen(false)}
-                  aria-label="Close navigation menu"
-                  className="rounded-md border border-zinc-200 p-2 text-zinc-700 transition-colors hover:border-primary hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 dark:border-zinc-700 dark:text-zinc-200"
-                >
-                  <FiX size={16} />
-                </button>
-              </div>
-
-              <nav aria-label="Mobile primary">
-                <ul className="space-y-1">
-                  {navItems.map((item) => {
-                    const isActive = activeSection === item.id;
-
-                    return (
-                      <li key={`mobile-${item.id}`}>
-                        <a
-                          href={item.href}
-                          onClick={handleNavigate(item.id)}
-                          className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                            isActive
-                              ? 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'
-                              : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100'
-                          }`}
-                          aria-current={isActive ? 'location' : undefined}
-                        >
-                          {item.label}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </nav>
-            </motion.aside>
+            <ul className="space-y-2">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <li key={`mobile-${item.id}`} className="relative">
+                    <a
+                      href={item.href}
+                      onClick={onNavigate(item.id)}
+                      className={`${linkClass} block ${isActive ? "text-lemon glow-lemon" : ""}`}
+                      aria-current={isActive ? "location" : undefined}
+                    >
+                      {item.label}
+                    </a>
+                    {isActive && (
+                      <motion.span
+                        layoutId="navline"
+                        className="absolute bottom-0 left-0 h-[2px] w-full bg-lemon"
+                        transition={{ type: "spring", stiffness: 500, damping: 34 }}
+                      />
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
           </motion.div>
         )}
       </AnimatePresence>

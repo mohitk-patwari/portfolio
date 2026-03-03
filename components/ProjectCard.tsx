@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { FiGithub } from 'react-icons/fi';
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 
 export interface ProjectCardProps {
   title: string;
@@ -9,52 +9,78 @@ export interface ProjectCardProps {
   repoUrl: string;
   imageSrc: string;
   imageAlt: string;
+  index: number;
 }
 
-const ProjectCard = ({ title, description, techStack, repoUrl, imageSrc, imageAlt }: ProjectCardProps) => {
+const ProjectCard = ({
+  title,
+  description,
+  techStack,
+  repoUrl,
+  imageSrc,
+  imageAlt,
+  index,
+}: ProjectCardProps) => {
   return (
     <motion.article
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.2, ease: 'easeOut' }}
-      className="overflow-hidden rounded-2xl border border-zinc-200 bg-white/90 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60"
+      whileHover={{
+        y: -6,
+        boxShadow: "0 0 0 1px #3dd6c840, 0 0 16px #3dd6c820",
+      }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="group relative cursor-pointer overflow-hidden rounded-xl border border-borderline bg-royal"
     >
-      <div className="relative aspect-video w-full border-b border-zinc-200 dark:border-zinc-800">
+      <span className="absolute left-3 top-3 z-10 font-mono text-xs text-butter/30">
+        {`0${index + 1}`}
+      </span>
+
+      <div className="relative aspect-video overflow-hidden">
         <Image
           src={imageSrc}
           alt={imageAlt}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover"
-          priority={false}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition duration-500 group-hover:scale-105"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-royal via-royal/20 to-transparent" />
       </div>
 
       <div className="p-5">
-        <h3 className="mb-2 text-lg font-semibold tracking-tight text-text">{title}</h3>
-        <p className="mb-4 text-sm leading-6 text-zinc-600 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden dark:text-zinc-300">
+        <h3 className="font-display text-base tracking-wide text-butter transition-colors group-hover:text-lemon">
+          {title}
+        </h3>
+
+        <p className="mt-2 line-clamp-2 font-body text-sm leading-relaxed text-butter/60">
           {description}
         </p>
 
-        <ul className="mb-5 flex flex-wrap gap-2" aria-label={`${title} tech stack`}>
+        <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`${title} tech stack`}>
           {techStack.map((tech) => (
-            <li key={tech}>
-              <span className="rounded-full bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-700 dark:bg-zinc-800 dark:text-zinc-200">
+            <li key={`${title}-${tech}`}>
+              <span className="rounded-full border border-tealcyber/30 bg-tealcyber/10 px-2 py-0.5 font-mono text-xs text-tealcyber">
                 {tech}
               </span>
             </li>
           ))}
         </ul>
 
-        <a
-          href={repoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Open repository for ${title} on GitHub`}
-          className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-2 text-sm font-medium text-zinc-700 transition-colors hover:border-primary hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 dark:border-zinc-700 dark:text-zinc-200 dark:hover:border-primary dark:hover:text-primary"
-        >
-          <FiGithub aria-hidden="true" size={16} />
-          <span>Repository</span>
-        </a>
+        <div className="mt-5 flex items-center justify-between">
+          <a
+            href={repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View source code for ${title}`}
+            className="cyber-focus rounded-sm font-mono text-xs text-butter/40 transition-colors hover:text-lemon"
+          >
+            <FiGithub className="mr-1.5 inline" aria-hidden="true" />
+            View Source
+          </a>
+
+          <FiArrowUpRight
+            aria-hidden="true"
+            className="text-butter/20 transition-colors group-hover:text-tealcyber"
+          />
+        </div>
       </div>
     </motion.article>
   );
