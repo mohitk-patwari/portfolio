@@ -10,15 +10,15 @@ interface EducationItem {
 const educationData: EducationItem[] = [
   {
     degree: 'BE in Computer Science and Engineering',
-    institute: 'Ramaiah Institute of Technology',
-    year: '2027',
-    gpa: 'GPA 7.97/10.00',
+    institute: ' Institute of Technology',
+    year: '20XX',
+    gpa: 'GPA XXX/10.00',
   },
   {
     degree: 'Snr. Secondary Schooling',
-    institute: 'Vidhyashram Public School',
-    year: '2023',
-    gpa: 'Score 81.2 %',
+    institute: 'XXXX Public School',
+    year: '20XX',
+    gpa: 'Score XXX%',
   },
 ];
 
