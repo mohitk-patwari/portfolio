@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FiMonitor, FiServer, FiTool } from "react-icons/fi";
 import type { IconType } from "react-icons";
+import GlitchText from "./GlitchText";
 
 type SkillCategory = {
   name: "Frontend" | "Backend" | "Tools";
@@ -80,12 +81,27 @@ const Skills = () => {
   return (
     <section id="skills" className="section mx-auto max-w-6xl px-6" aria-labelledby="skills-heading">
       <p className="mono-label">// TECH_STACK.json</p>
-      <h2
-        id="skills-heading"
-        className="mt-2 font-display text-3xl text-lemon glow-lemon md:text-4xl"
-      >
-        Skills
-      </h2>
+      <GlitchText
+        text="Skills"
+        as="h2"
+        className="font-display text-3xl md:text-4xl text-lemon glow-lemon mt-2"
+        scrambleOnHover={true}
+        animDelay={100}
+        scrambleDuration={600}
+      />
+
+      <div className="mt-8 mb-6 flex flex-wrap gap-4 font-mono text-[10px] tracking-widest text-butter/25">
+        <span>
+          LOADING: <span className="text-tealcyber/50">TECH_STACK.json</span>
+        </span>
+        <span>
+          MODULES: <span className="text-tealcyber/50">17 loaded</span>
+        </span>
+        <span>
+          ERRORS: <span className="text-rust/50">0</span>
+        </span>
+        <span className="ml-auto">v2.0.4</span>
+      </div>
 
       <motion.div
         className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
@@ -103,6 +119,7 @@ const Skills = () => {
               className="rounded-xl border border-borderline bg-royal p-6 transition-all duration-300 hover:glow-box-teal"
             >
               <div className="flex items-center">
+                <span className="mr-2 inline-block h-1.5 w-1.5 animate-pulse-slow rounded-full bg-tealcyber" />
                 <Icon className="mr-2 text-lg text-tealcyber" aria-hidden="true" />
                 <h3 className="font-mono text-xs uppercase tracking-widest text-tealcyber">
                   {category.name}

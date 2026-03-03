@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import GlitchText from "./GlitchText";
 
 const About = () => {
   return (
@@ -17,12 +18,14 @@ const About = () => {
 
       <div className="relative z-10">
         <p className="mono-label">// WHO_AM_I</p>
-        <h2
-          id="about-heading"
-          className="mt-2 font-display text-3xl text-lemon glow-lemon md:text-4xl"
-        >
-          About Me
-        </h2>
+        <GlitchText
+          text="About Me"
+          as="h2"
+          className="font-display text-3xl md:text-4xl text-lemon glow-lemon mt-2"
+          scrambleOnHover={true}
+          animDelay={100}
+          scrambleDuration={800}
+        />
 
         <div className="mt-12 grid grid-cols-1 gap-16 lg:grid-cols-2">
           <motion.div
@@ -89,32 +92,55 @@ const About = () => {
               </div>
 
               <div className="space-y-2 p-5 font-mono text-sm">
-                <p>
+                <p className="flex items-center gap-2">
                   <span className="text-tealcyber">$ whoami</span>
-                  <span className="text-butter/70"> {" -> creative-engineer"}</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">creative-engineer</span>
                 </p>
-                <p>
-                  <span className="text-tealcyber">$ status</span>
-                  <span className="text-butter/70"> {" -> about-to-graduate"}</span>
+                <p className="flex items-center gap-2">
+                  <span className="text-tealcyber">$ uname -a</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">NextJS 14 • TypeScript • Tailwind</span>
                 </p>
-                <p>
-                  <span className="text-tealcyber">$ stack</span>
-                  <span className="text-butter/70"> {" -> full-stack"}</span>
+                <p className="flex items-center gap-2">
+                  <span className="text-tealcyber">$ uptime</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">4 years learning, still going</span>
                 </p>
-                <p>
-                  <span className="text-tealcyber">$ current_mood</span>
-                  <span className="text-butter/70">
-                    {" -> building-something-cool"}
-                  </span>
+                <p className="flex items-center gap-2">
+                  <span className="text-tealcyber">$ git log --oneline</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">3 projects • many commits</span>
                 </p>
-                <p>
-                  <span className="text-tealcyber">$ coffee</span>
-                  <span className="text-butter/70"> {" -> required"}</span>
+                <p className="flex items-center gap-2">
+                  <span className="text-tealcyber">$ cat interests.txt</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">systems, interfaces, coffee</span>
                 </p>
-                <p>
-                  <span className="text-tealcyber">$ </span>
+                <p className="flex items-center gap-2">
+                  <span className="text-tealcyber">$ echo $STATUS</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">OPEN_TO_OPPORTUNITIES</span>
+                </p>
+                <p className="flex items-center gap-2">
+                  <span className="text-tealcyber">$</span>
                   <span className="animate-pulse text-lemon">|</span>
                 </p>
+              </div>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-3">
+              <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
+                <span className="mb-0.5 block text-[10px] uppercase text-butter/30">COMMITS</span>
+                <span className="text-sm font-bold text-tealcyber">100+</span>
+              </div>
+              <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
+                <span className="mb-0.5 block text-[10px] uppercase text-butter/30">COFFEE</span>
+                <span className="text-sm font-bold text-rust">∞</span>
+              </div>
+              <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
+                <span className="mb-0.5 block text-[10px] uppercase text-butter/30">BUGS FIXED</span>
+                <span className="text-sm font-bold text-lemon/70">most of them</span>
               </div>
             </div>
 

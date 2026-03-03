@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FiDownload } from "react-icons/fi";
+import GlitchText from "./GlitchText";
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -46,18 +47,35 @@ const Hero = () => {
         animate="visible"
         variants={containerVariants}
       >
-        <motion.div variants={itemVariants} className="mono-label font-mono text-xs text-tealcyber/80">
-          // WORKSPACE_INIT.exe
-          <span className="ml-1 animate-pulse text-lemon">|</span>
+        <motion.div variants={itemVariants}>
+          <div className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-tealcyber/80">
+            <span className="inline-block h-2 w-2 animate-pulse-slow rounded-full bg-tealcyber" />
+            <span>
+              <span className="text-lemon/60">&gt;&gt;</span>
+              {" "}workspace_init.exe
+              <span className="ml-1 animate-pulse text-lemon">_</span>
+            </span>
+            <span className="ml-auto hidden text-butter/20 md:block">[ PID: 4096 ]</span>
+          </div>
         </motion.div>
 
-        <motion.h1
-          variants={itemVariants}
-          className="mt-4 font-display text-6xl font-black leading-none tracking-tighter md:text-8xl lg:text-9xl"
-        >
-          <span className="block text-butter">MOHIT</span>
-          <span className="block text-lemon glow-lemon">PATWARI</span>
-        </motion.h1>
+        <motion.div variants={itemVariants} className="space-y-1">
+          <GlitchText
+            text="MOHIT"
+            as="h1"
+            className="font-display font-black text-6xl md:text-8xl lg:text-9xl leading-none tracking-tighter text-butter"
+            animDelay={200}
+            scrambleDuration={1400}
+          />
+          <GlitchText
+            text="PATWARI"
+            as="h1"
+            className="font-display font-black text-6xl md:text-8xl lg:text-9xl leading-none tracking-tighter text-lemon glow-lemon"
+            scrambleOnHover={true}
+            animDelay={500}
+            scrambleDuration={1000}
+          />
+        </motion.div>
 
         <motion.p
           variants={itemVariants}
@@ -65,6 +83,21 @@ const Hero = () => {
         >
           Full-stack developer. Digital dimension explorer.
         </motion.p>
+
+        <motion.div
+          variants={itemVariants}
+          className="mt-2 flex gap-6 font-mono text-[10px] tracking-widest text-butter/30"
+        >
+          <span>
+            STATUS: <span className="text-tealcyber/70">AVAILABLE_FOR_HIRE</span>
+          </span>
+          <span>
+            STACK: <span className="text-tealcyber/70">FULL</span>
+          </span>
+          <span>
+            BUILD: <span className="text-lemon/50">PASSING ✓</span>
+          </span>
+        </motion.div>
 
         <motion.p
           variants={itemVariants}

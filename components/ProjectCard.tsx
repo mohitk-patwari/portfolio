@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiArrowUpRight, FiGithub } from "react-icons/fi";
+import GlitchText from "./GlitchText";
 
 export interface ProjectCardProps {
   title: string;
@@ -10,6 +11,8 @@ export interface ProjectCardProps {
   imageSrc: string;
   imageAlt: string;
   index: number;
+  startDate: string;
+  endDate: string;
 }
 
 const ProjectCard = ({
@@ -20,6 +23,8 @@ const ProjectCard = ({
   imageSrc,
   imageAlt,
   index,
+  startDate,
+  endDate,
 }: ProjectCardProps) => {
   return (
     <motion.article
@@ -46,9 +51,22 @@ const ProjectCard = ({
       </div>
 
       <div className="p-5">
-        <h3 className="font-display text-base tracking-wide text-butter transition-colors group-hover:text-lemon">
-          {title}
-        </h3>
+        <GlitchText
+          text={title}
+          as="h3"
+          className="font-display text-base text-butter tracking-wide group-hover:text-lemon transition-colors"
+          scrambleOnHover={true}
+          scrambleDuration={500}
+        />
+
+        <div className="mt-1 mb-3 flex items-center gap-2">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-butter/30">
+            Duration
+          </span>
+          <span className="font-mono text-[10px] text-tealcyber/60">
+            {startDate} → {endDate}
+          </span>
+        </div>
 
         <p className="mt-2 line-clamp-2 font-body text-sm leading-relaxed text-butter/60">
           {description}
