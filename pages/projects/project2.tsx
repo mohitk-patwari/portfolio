@@ -23,7 +23,7 @@ const Project2: React.FC = () => {
                     <h2 className="text-xl font-bold text-text mb-4">Tech Stack</h2>
                     <div className="flex flex-wrap gap-2">
                         {['React', 'Firebase', 'Framer Motion', 'TypeScript'].map((tech, idx) => (
-                            <span key={idx} className="bg-gray-800 text-text px-3 py-1 rounded text-sm">
+                            <span key={idx} className="bg-royal text-text px-3 py-1 rounded text-sm">
                                 {tech}
                             </span>
                         ))}
@@ -46,7 +46,7 @@ const Project2: React.FC = () => {
                         href="https://github.com/mohit/task-manager"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-gray-800 text-text px-4 py-2 rounded hover:bg-gray-700 transition"
+                        className="inline-flex items-center gap-2 bg-royal text-text px-4 py-2 rounded hover:bg-sapphire transition"
                     >
                         <FiGithub size={20} />
                         View Repository
