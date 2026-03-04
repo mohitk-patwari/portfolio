@@ -6,13 +6,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="system"
-      enableSystem={true}
+      defaultTheme="dark"
+      enableSystem={false}
       disableTransitionOnChange
     >
-      <div className="max-w-6xl mx-auto px-6">
-        <Component {...pageProps} />
-      </div>
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 }

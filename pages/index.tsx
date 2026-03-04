@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import Education from "../components/Education";
 import ConstellationSkills from "../components/ConstellationSkills";
+import CircuitTraces from "../components/CircuitTraces";
 import Projects from "../components/Projects";
 
 const Home = () => {
@@ -31,9 +32,13 @@ const Home = () => {
 
       <main className="relative">
         <Hero />
+        <CircuitTraces className="w-full h-32 opacity-60" />
         <About />
+        <CircuitTraces className="w-full h-24 opacity-40" />
         <Education />
+        <CircuitTraces className="w-full h-32 opacity-50" />
         <ConstellationSkills />
+        <CircuitTraces className="w-full h-24 opacity-40" />
         <Projects />
       </main>
     </>

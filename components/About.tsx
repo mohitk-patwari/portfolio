@@ -105,12 +105,12 @@ const About = () => {
                   <span className="text-butter/70 font-mono text-sm">final year CS student, still shipping</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber font-mono text-sm">$ git log --oneline</span>
+                  <span className="text-tealcyber font-mono text-sm">$ git log</span>
                   <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
                   <span className="text-butter/70 font-mono text-sm">see projects {"\u2193"}</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber font-mono text-sm">$ cat interests.txt</span>
+                  <span className="text-tealcyber font-mono text-sm">$ cat interests</span>
                   <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
                   <span className="text-butter/70 font-mono text-sm">systems, data, interfaces, tea</span>
                 </p>
