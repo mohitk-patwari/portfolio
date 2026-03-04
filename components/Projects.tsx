@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
-import GlitchText from "./GlitchText";
+import SectionHeader from "./SectionHeader";
 
 const projects = [
   {
@@ -65,23 +65,15 @@ const itemVariants = {
 const Projects = () => {
   return (
     <section id="projects" className="section mx-auto max-w-6xl px-6" aria-labelledby="projects-heading">
-      <p className="mono-label">// SELECTED_WORK</p>
       <div id="projects-heading">
-        <GlitchText
-          text="Projects"
-          as="h2"
-          className="font-display text-3xl md:text-4xl text-lemon glow-lemon mt-2"
-          scrambleOnHover={true}
-          animDelay={100}
-          scrambleDuration={700}
-        />
+        <SectionHeader label="// SELECTED_WORK" heading="Projects" animDelay={0} />
       </div>
       <p className="mt-2 font-mono text-xs text-butter/40">
         // A selection of things I&apos;ve built. Each one taught me something
         different.
       </p>
       <div className="mt-1 font-mono text-[10px] tracking-widest text-butter/20">
-        SORTED_BY: impact • FILTER: all • RESULTS: 3
+        SORTED_BY: impact â€¢ FILTER: all â€¢ RESULTS: 3
       </div>
 
       <motion.div
@@ -112,3 +104,4 @@ const Projects = () => {
 };
 
 export default Projects;
+

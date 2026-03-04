@@ -3,21 +3,21 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Education from "../components/Education";
-import Skills from "../components/Skills";
+import ConstellationSkills from "../components/ConstellationSkills";
 import Projects from "../components/Projects";
 
 const Home = () => {
   return (
     <>
       <Head>
-        <title>{`Mohit Patwari \u2014 Full Stack Developer`}</title>
+        <title>{`Mohit Patwari \u2014 Engineer & Builder`}</title>
         <meta
           name="description"
-          content={`Portfolio of Mohit Patwari \u2014 final year engineering student building scalable, immersive web experiences.`}
+          content={`Portfolio of Mohit Patwari \u2014 final year CS engineer building at the intersection of software, data, and systems.`}
         />
         <meta
           property="og:title"
-          content={`Mohit Patwari \u2014 Full Stack Developer`}
+          content={`Mohit Patwari \u2014 Engineer & Builder`}
         />
         <meta
           property="og:description"
@@ -33,7 +33,7 @@ const Home = () => {
         <Hero />
         <About />
         <Education />
-        <Skills />
+        <ConstellationSkills />
         <Projects />
       </main>
     </>

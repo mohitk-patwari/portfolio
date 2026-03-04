@@ -81,7 +81,7 @@ const Hero = () => {
           variants={itemVariants}
           className="mt-6 font-mono text-lg text-tealcyber glow-teal md:text-xl"
         >
-          Full-stack developer. Digital dimension explorer.
+          Engineer. Builder. ML Enthusiast. Digital dimension explorer.
         </motion.p>
 
         <motion.div
@@ -92,7 +92,7 @@ const Hero = () => {
             STATUS: <span className="text-tealcyber/70">AVAILABLE_FOR_HIRE</span>
           </span>
           <span>
-            STACK: <span className="text-tealcyber/70">FULL</span>
+            STACK: <span className="text-tealcyber/70">POLYGLOT</span>
           </span>
           <span>
             BUILD: <span className="text-lemon/50">PASSING ✓</span>

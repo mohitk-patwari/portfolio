@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import GlitchText from "./GlitchText";
+import SectionHeader from "./SectionHeader";
 
 const About = () => {
   return (
@@ -17,15 +17,7 @@ const About = () => {
       </div>
 
       <div className="relative z-10">
-        <p className="mono-label">// WHO_AM_I</p>
-        <GlitchText
-          text="About Me"
-          as="h2"
-          className="font-display text-3xl md:text-4xl text-lemon glow-lemon mt-2"
-          scrambleOnHover={true}
-          animDelay={100}
-          scrambleDuration={800}
-        />
+        <SectionHeader label="// WHO_AM_I" heading="About Me" animDelay={0} />
 
         <div className="mt-12 grid grid-cols-1 gap-16 lg:grid-cols-2">
           <motion.div
@@ -91,40 +83,44 @@ const About = () => {
                 </span>
               </div>
 
-              <div className="space-y-2 p-5 font-mono text-sm">
+              <div className="space-y-2 p-5">
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber">$ whoami</span>
-                  <span className="text-borderline">→</span>
-                  <span className="text-butter/70">creative-engineer</span>
+                  <span className="text-tealcyber font-mono text-sm">$ whoami</span>
+                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
+                  <span className="text-butter/70 font-mono text-sm">builder-of-things</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber">$ uname -a</span>
-                  <span className="text-borderline">→</span>
-                  <span className="text-butter/70">NextJS 14 • TypeScript • Tailwind</span>
+                  <span className="text-tealcyber font-mono text-sm">$ cat role.txt</span>
+                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
+                  <span className="text-butter/70 font-mono text-sm">engineer {"\u2022"} ml enthusiast {"\u2022"} problem solver</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber">$ uptime</span>
-                  <span className="text-borderline">→</span>
-                  <span className="text-butter/70">4 years learning, still going</span>
+                  <span className="text-tealcyber font-mono text-sm">$ uname -a</span>
+                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
+                  <span className="text-butter/70 font-mono text-sm">Next.js {"\u2022"} Python {"\u2022"} TypeScript {"\u2022"} Node.js</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber">$ git log --oneline</span>
-                  <span className="text-borderline">→</span>
-                  <span className="text-butter/70">3 projects • many commits</span>
+                  <span className="text-tealcyber font-mono text-sm">$ uptime</span>
+                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
+                  <span className="text-butter/70 font-mono text-sm">final year CS student, still shipping</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber">$ cat interests.txt</span>
-                  <span className="text-borderline">→</span>
-                  <span className="text-butter/70">systems, interfaces, coffee</span>
+                  <span className="text-tealcyber font-mono text-sm">$ git log --oneline</span>
+                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
+                  <span className="text-butter/70 font-mono text-sm">see projects {"\u2193"}</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber">$ echo $STATUS</span>
-                  <span className="text-borderline">→</span>
-                  <span className="text-butter/70">OPEN_TO_OPPORTUNITIES</span>
+                  <span className="text-tealcyber font-mono text-sm">$ cat interests.txt</span>
+                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
+                  <span className="text-butter/70 font-mono text-sm">systems, data, interfaces, tea</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber">$</span>
-                  <span className="animate-pulse text-lemon">|</span>
+                  <span className="text-tealcyber font-mono text-sm">$ echo $STATUS</span>
+                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
+                  <span className="text-butter/70 font-mono text-sm">OPEN_TO_OPPORTUNITIES</span>
+                </p>
+                <p className="flex items-center gap-2">
+                  <span className="text-tealcyber font-mono text-sm">$ [blinking cursor]</span>
                 </p>
               </div>
             </div>
@@ -132,11 +128,11 @@ const About = () => {
             <div className="mt-4 flex flex-wrap gap-3">
               <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
                 <span className="mb-0.5 block text-[10px] uppercase text-butter/30">COMMITS</span>
-                <span className="text-sm font-bold text-tealcyber">100+</span>
+                <span className="text-sm font-bold text-tealcyber">50+</span>
               </div>
               <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
-                <span className="mb-0.5 block text-[10px] uppercase text-butter/30">COFFEE</span>
-                <span className="text-sm font-bold text-rust">∞</span>
+                <span className="mb-0.5 block text-[10px] uppercase text-butter/30">TEA</span>
+                <span className="text-sm font-bold text-rust">{"\u{1F375}"} {"\u221E"}</span>
               </div>
               <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
                 <span className="mb-0.5 block text-[10px] uppercase text-butter/30">BUGS FIXED</span>
@@ -155,3 +151,4 @@ const About = () => {
 };
 
 export default About;
+

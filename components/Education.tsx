@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
+import SectionHeader from "./SectionHeader";
 
 type EducationEntry = {
   degree: string;
@@ -52,13 +53,7 @@ const itemVariants = {
 const Education = () => {
   return (
     <section id="education" className="section mx-auto max-w-6xl px-6" aria-labelledby="education-heading">
-      <p className="mono-label">// CREDENTIALS.log</p>
-      <h2
-        id="education-heading"
-        className="mt-2 font-display text-3xl text-lemon glow-lemon md:text-4xl"
-      >
-        Education
-      </h2>
+      <SectionHeader label="// CREDENTIALS.log" heading="Education" animDelay={0} />
 
       <motion.div
         className="mt-12 space-y-0"
