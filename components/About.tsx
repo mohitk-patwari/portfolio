@@ -83,44 +83,45 @@ const About = () => {
                 </span>
               </div>
 
-              <div className="space-y-2 p-5">
+              <div className="space-y-2 p-5 font-mono text-sm">
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber font-mono text-sm">$ whoami</span>
-                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
-                  <span className="text-butter/70 font-mono text-sm">builder-of-things</span>
+                  <span className="text-tealcyber">$ whoami</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">builder-of-things</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber font-mono text-sm">$ cat role.txt</span>
-                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
-                  <span className="text-butter/70 font-mono text-sm">engineer {"\u2022"} ml enthusiast {"\u2022"} problem solver</span>
+                  <span className="text-tealcyber">$ cat role.txt</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">engineer • ml enthusiast • problem solver</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber font-mono text-sm">$ uname -a</span>
-                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
-                  <span className="text-butter/70 font-mono text-sm">Next.js {"\u2022"} Python {"\u2022"} TypeScript {"\u2022"} Node.js</span>
+                  <span className="text-tealcyber">$ uname -a</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">Next.js • Python • TypeScript • Node.js</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber font-mono text-sm">$ uptime</span>
-                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
-                  <span className="text-butter/70 font-mono text-sm">final year CS student, still shipping</span>
+                  <span className="text-tealcyber">$ uptime</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">final year CS student, still shipping</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber font-mono text-sm">$ git log</span>
-                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
-                  <span className="text-butter/70 font-mono text-sm">see projects {"\u2193"}</span>
+                  <span className="text-tealcyber">$ git log</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">see projects ↓</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber font-mono text-sm">$ cat interests</span>
-                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
-                  <span className="text-butter/70 font-mono text-sm">systems, data, interfaces, tea</span>
+                  <span className="text-tealcyber">$ cat interests</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">systems, data, interfaces, tea</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber font-mono text-sm">$ echo $STATUS</span>
-                  <span className="text-borderline font-mono text-sm">{"\u2192"}</span>
-                  <span className="text-butter/70 font-mono text-sm">OPEN_TO_OPPORTUNITIES</span>
+                  <span className="text-tealcyber">$ echo $STATUS</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">OPEN_TO_OPPORTUNITIES</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber font-mono text-sm">$ [blinking cursor]</span>
+                  <span className="text-tealcyber">$</span>
+                  <span className="animate-pulse text-lemon">|</span>
                 </p>
               </div>
             </div>
