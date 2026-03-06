@@ -30,7 +30,7 @@ const Home = () => {
 
       <Navbar />
 
-      <main className="relative">
+    <main className="relative bg-subtle-grid bg-grid">
         <Hero />
         <CircuitTraces className="w-full h-32 opacity-60" />
         <About />

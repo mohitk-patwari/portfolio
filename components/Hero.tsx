@@ -21,9 +21,9 @@ const itemVariants = {
 };
 
 const metrics = [
-  { value: "3+", label: "Major Projects" },
-  { value: "Full", label: "Stack Focus" },
-  { value: "UI/UX", label: "Emphasis" },
+  { value: "3", label: "Projects" },
+  { value: "50+", label: "Commits" },
+  { value: "ML", label: "Enthusiast" },
 ];
 
 const Hero = () => {

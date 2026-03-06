@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { animate } from "animejs";
 import {
@@ -114,23 +114,24 @@ const colorMap = {
 
 const SignalBar = ({ signal, color }: { signal: number; color: keyof typeof colorMap }) => {
   const barRef = useRef<HTMLDivElement>(null);
+  const [triggered, setTriggered] = useState(false);
 
   useEffect(() => {
-    if (!barRef.current) return;
-    animate(barRef.current, {
-      width: [`0%`, `${signal}%`],
-      duration: 1200,
-      ease: "outExpo",
-      delay: 300,
-    });
-  }, [signal]);
+    const el = barRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setTriggered(true); observer.disconnect(); } },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="h-[2px] w-full bg-borderline/50 overflow-hidden">
+    <div ref={barRef} className="h-[2px] w-full bg-borderline/50 overflow-hidden">
       <div
-        ref={barRef}
-        className={`h-full ${colorMap[color].bar}`}
-        style={{ width: "0%" }}
+        className={`h-full ${colorMap[color].bar} transition-all duration-[1200ms] ease-out`}
+        style={{ width: triggered ? `${signal}%` : "0%" }}
       />
     </div>
   );
