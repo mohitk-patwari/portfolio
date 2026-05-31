@@ -91,6 +91,87 @@ body {
   opacity: 0.8;
 }
 
+/* ── Per-section background textures ─────────────────── */
+.section-bg-dots {
+  background-image: radial-gradient(circle, #1e497618 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.section-bg-lines {
+  background-image: repeating-linear-gradient(
+    0deg, transparent, transparent 36px,
+    #1e49761a 36px, #1e49761a 37px
+  );
+}
+
+.section-bg-grid {
+  background-image:
+    linear-gradient(#1e497614 1px, transparent 1px),
+    linear-gradient(90deg, #1e497614 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.section-bg-diagonal {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent, transparent 22px,
+    #1e49760e 22px, #1e49760e 23px
+  );
+}
+
+.section-panel-top {
+  position: relative;
+}
+.section-panel-top::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #1e4976, transparent);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Wave animation (preloader) ───────────────────────── */
+@keyframes wave-bob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-14px); }
+}
+
+@keyframes draw-reticle {
+  from { stroke-dashoffset: 314; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes extend-line {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes extend-line-v {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+@keyframes ticker-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  animation: ticker 28s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
 ::selection {
   background: #3dd6c840;
   color: #f0e6c8;

@@ -1,13 +1,13 @@
 ﻿import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import SectionHeader from "./SectionHeader";
+import GlitchText from "./GlitchText";
 
 const About = () => {
   return (
     <section
       id="about"
       className="section relative mx-auto max-w-6xl overflow-hidden px-6"
-      aria-labelledby="about-heading"
+      aria-label="About Me"
     >
       <div
         aria-hidden="true"
@@ -17,7 +17,15 @@ const About = () => {
       </div>
 
       <div className="relative z-10">
-        <SectionHeader label="// WHO_AM_I" heading="About Me" animDelay={0} />
+        <p className="mono-label">// WHO_AM_I</p>
+        <GlitchText
+          text="About Me"
+          as="h2"
+          className="font-display text-3xl md:text-4xl text-lemon glow-lemon mt-2"
+          scrambleOnHover={true}
+          animDelay={100}
+          scrambleDuration={600}
+        />
 
         <div className="mt-12 grid grid-cols-1 gap-16 lg:grid-cols-2">
           <motion.div

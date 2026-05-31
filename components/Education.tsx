@@ -1,5 +1,5 @@
 ﻿import { motion } from "framer-motion";
-import SectionHeader from "./SectionHeader";
+import GlitchText from "./GlitchText";
 
 type EducationEntry = {
   degree: string;
@@ -10,21 +10,21 @@ type EducationEntry = {
 
 const educationData: EducationEntry[] = [
   {
-    degree: "B.E. Computer Engineering",
-    institute: "University of Mumbai",
-    year: "2021 - 2025",
+    degree: "B.E. Computer Science & Engineering",
+    institute: "MS Ramaiah Institute of Technology",
+    year: "2023 – 2027",
     status: "IN PROGRESS",
   },
   {
     degree: "HSC (Science)",
-    institute: "Maharashtra State Board",
-    year: "2019 - 2021",
+    institute: "CBSE",
+    year: "2021 – 2023",
     status: "COMPLETED",
   },
   {
     degree: "SSC",
-    institute: "Maharashtra State Board",
-    year: "2019",
+    institute: "CBSE",
+    year: "2021",
     status: "COMPLETED",
   },
 ];
@@ -52,8 +52,16 @@ const itemVariants = {
 
 const Education = () => {
   return (
-    <section id="education" className="section mx-auto max-w-6xl px-6" aria-labelledby="education-heading">
-      <SectionHeader label="// CREDENTIALS.log" heading="Education" animDelay={0} />
+    <section id="education" className="section mx-auto max-w-6xl px-6" aria-label="Education">
+      <p className="mono-label">// CREDENTIALS.log</p>
+      <GlitchText
+        text="Education"
+        as="h2"
+        className="font-display text-3xl md:text-4xl text-lemon glow-lemon mt-2"
+        scrambleOnHover={true}
+        animDelay={100}
+        scrambleDuration={600}
+      />
 
       <motion.div
         className="mt-12 space-y-0"

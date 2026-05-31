@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 import GlitchText from "./GlitchText";
@@ -8,11 +7,10 @@ export interface ProjectCardProps {
   description: string;
   techStack: string[];
   repoUrl: string;
-  imageSrc: string;
-  imageAlt: string;
   index: number;
   startDate: string;
   endDate: string;
+  terminalLines: { text: string; type: "cmd" | "out" }[];
 }
 
 const ProjectCard = ({
@@ -20,11 +18,10 @@ const ProjectCard = ({
   description,
   techStack,
   repoUrl,
-  imageSrc,
-  imageAlt,
   index,
   startDate,
   endDate,
+  terminalLines,
 }: ProjectCardProps) => {
   return (
     <motion.article
@@ -39,15 +36,33 @@ const ProjectCard = ({
         {`0${index + 1}`}
       </span>
 
-      <div className="relative aspect-video overflow-hidden">
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-royal via-royal/20 to-transparent" />
+      <div className="relative aspect-video overflow-hidden bg-sapphire flex flex-col">
+        <div className="flex items-center gap-1.5 px-3 py-2 border-b border-borderline/60 bg-royal/80 shrink-0">
+          <span className="h-2.5 w-2.5 rounded-full bg-rust/40" />
+          <span className="h-2.5 w-2.5 rounded-full bg-lemon/40" />
+          <span className="h-2.5 w-2.5 rounded-full bg-tealcyber/40" />
+          <span className="ml-2 font-mono text-[9px] tracking-widest text-butter/25">
+            terminal — bash
+          </span>
+        </div>
+        <div className="flex-1 overflow-hidden p-3 flex flex-col gap-0.5">
+          {terminalLines.map((line, i) => (
+            <p
+              key={i}
+              className={`font-mono text-[10px] leading-relaxed ${
+                line.type === "cmd"
+                  ? "text-tealcyber/80"
+                  : "text-butter/45"
+              }`}
+            >
+              {line.text}
+            </p>
+          ))}
+          <p className="font-mono text-[10px] text-tealcyber/80 mt-0.5">
+            <span className="animate-pulse">▋</span>
+          </p>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-royal/60 via-transparent to-transparent pointer-events-none" />
       </div>
 
       <div className="p-5">

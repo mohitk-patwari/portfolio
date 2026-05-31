@@ -66,7 +66,7 @@ const categories: Category[] = [
     icon: FiTool,
     color: "lemon",
     signal: 90,
-    skills: ["Docker", "Git", "Linux", "n8n", "⚡ChatGPT", "⚡Cursor", "⚡Gemini"],
+    skills: ["Docker", "Git", "Linux", "n8n", "⚡ChatGPT", "⚡Gemini", "claude code"],
   },
   {
     id: "cs",

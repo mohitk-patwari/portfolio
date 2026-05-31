@@ -5,8 +5,8 @@ import {
   useState,
   type MouseEvent as ReactMouseEvent,
 } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { motion } from "framer-motion";
+import Logo from "./Logo";
 
 type SectionId = "home" | "about" | "education" | "skills" | "projects";
 
@@ -26,7 +26,6 @@ const navItems: NavItem[] = [
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState<SectionId>("home");
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
 
   const sectionIds = useMemo(
@@ -39,9 +38,7 @@ const Navbar = () => {
       document.querySelectorAll<HTMLElement>("section[id]")
     ).filter((section) => sectionIds.has(section.id as SectionId));
 
-    if (sections.length === 0) {
-      return;
-    }
+    if (sections.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -49,16 +46,10 @@ const Navbar = () => {
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-        if (!visible[0]) {
-          return;
-        }
-
+        if (!visible[0]) return;
         setActiveSection(visible[0].target.id as SectionId);
       },
-      {
-        rootMargin: "-28% 0px -52% 0px",
-        threshold: [0.2, 0.4, 0.6],
-      }
+      { rootMargin: "-28% 0px -52% 0px", threshold: [0.2, 0.4, 0.6] }
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -66,49 +57,9 @@ const Navbar = () => {
   }, [sectionIds]);
 
   useEffect(() => {
-    const onEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsMobileOpen(false);
-      }
-    };
-
-    window.addEventListener("keydown", onEscape);
-    return () => window.removeEventListener("keydown", onEscape);
-  }, []);
-
-  useEffect(() => {
-    if (!isMobileOpen) {
-      return;
-    }
-
-    const onOutsideClick = (event: globalThis.MouseEvent) => {
-      if (!navRef.current) {
-        return;
-      }
-
-      const target = event.target as Node;
-      if (!navRef.current.contains(target)) {
-        setIsMobileOpen(false);
-      }
-    };
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    document.addEventListener("mousedown", onOutsideClick as EventListener);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("mousedown", onOutsideClick as EventListener);
-    };
-  }, [isMobileOpen]);
-
-  useEffect(() => {
     const onScroll = () => {
-      if (window.scrollY < 120) {
-        setActiveSection("home");
-      }
+      if (window.scrollY < 120) setActiveSection("home");
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
@@ -118,15 +69,12 @@ const Navbar = () => {
     (id: SectionId) => (event: ReactMouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
       const target = document.getElementById(id);
-
       if (target) {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       } else if (id === "home") {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-
       setActiveSection(id);
-      setIsMobileOpen(false);
       window.history.replaceState(null, "", `#${id}`);
     };
 
@@ -142,10 +90,10 @@ const Navbar = () => {
         <a
           href="#home"
           onClick={onNavigate("home")}
-          className="cyber-focus flex items-center gap-2 focus-visible:rounded-sm"
+          className="cyber-focus flex items-center gap-2.5 focus-visible:rounded-sm"
           aria-label="Go to home section"
         >
-          <span className="font-display text-xl text-lemon glow-lemon">M.</span>
+          <Logo variant="mark" />
           <span className="rounded-full border border-tealcyber/30 bg-tealcyber/10 px-2 py-0.5 font-mono text-xs text-tealcyber">
             v2.0
           </span>
@@ -180,54 +128,7 @@ const Navbar = () => {
           <span className="h-2 w-2 rounded-full bg-tealcyber animate-pulse-slow" />
           <span className="ml-1 font-mono text-xs text-tealcyber/70">ONLINE</span>
         </div>
-
-        <button
-          type="button"
-          onClick={() => setIsMobileOpen((prev) => !prev)}
-          className="cyber-focus inline-flex items-center justify-center rounded-md p-1.5 text-butter md:hidden"
-          aria-label={isMobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isMobileOpen}
-        >
-          {isMobileOpen ? <HiX size={22} /> : <HiMenuAlt3 size={22} />}
-        </button>
       </nav>
-
-      <AnimatePresence>
-        {isMobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="mt-2 rounded-2xl border border-borderline bg-royal/95 p-4 backdrop-blur-xl md:hidden"
-          >
-            <ul className="space-y-2">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.id;
-                return (
-                  <li key={`mobile-${item.id}`} className="relative">
-                    <a
-                      href={item.href}
-                      onClick={onNavigate(item.id)}
-                      className={`${linkClass} block ${isActive ? "text-lemon glow-lemon" : ""}`}
-                      aria-current={isActive ? "location" : undefined}
-                    >
-                      {item.label}
-                    </a>
-                    {isActive && (
-                      <motion.span
-                        layoutId="navline"
-                        className="absolute bottom-0 left-0 h-[2px] w-full bg-lemon"
-                        transition={{ type: "spring", stiffness: 500, damping: 34 }}
-                      />
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   );
 };
