@@ -91,9 +91,9 @@ const Hero = () => {
 
             <motion.div
               variants={itemVariants}
-              className="mt-2 flex gap-6 font-mono text-[10px] tracking-widest text-butter/30"
+              className="mt-2 flex flex-wrap gap-6 font-mono text-[10px] tracking-widest text-butter/50"
             >
-              <span>STATUS: <span className="text-tealcyber/70">AVAILABLE_FOR_HIRE</span></span>
+              <span>STATUS: <span className="text-tealcyber/70">OPEN_TO_OPPORTUNITIES</span></span>
               <span>STACK: <span className="text-tealcyber/70">POLYGLOT</span></span>
               <span>BUILD: <span className="text-lemon/50">PASSING ✓</span></span>
             </motion.div>
@@ -102,8 +102,9 @@ const Hero = () => {
               variants={itemVariants}
               className="mt-4 max-w-[55ch] font-body text-base leading-[1.8] text-butter/70"
             >
-              Building scalable, user-centric web applications at the intersection
-              of imagination and engineering.
+              Final-year CS student who builds systems, breaks problems into
+              pieces, and occasionally teaches machines to find patterns.
+              Backend, ML, and interfaces that don't feel like waiting rooms.
             </motion.p>
 
             <motion.div variants={itemVariants} className="mt-10 flex flex-wrap gap-4">

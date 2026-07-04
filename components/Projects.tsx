@@ -160,7 +160,7 @@ const Projects = () => {
         // A selection of things I&apos;ve built. Each one taught me something
         different.
       </p>
-      <div className="mt-1 font-mono text-[10px] tracking-widest text-butter/20">
+      <div className="mt-1 font-mono text-[10px] tracking-widest text-butter/40">
         SORTED_BY: impact • FILTER: all • RESULTS: 6
       </div>
 

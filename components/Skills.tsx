@@ -66,7 +66,7 @@ const categories: Category[] = [
     icon: FiTool,
     color: "lemon",
     signal: 90,
-    skills: ["Docker", "Git", "Linux", "n8n", "⚡ChatGPT", "⚡Gemini", "claude code"],
+    skills: ["Docker", "Git", "Linux", "n8n", "⚡ChatGPT", "⚡Cursor", "⚡Gemini", "⚡Claude Code"],
   },
   {
     id: "cs",
@@ -191,7 +191,7 @@ const Skills = () => {
               <div className={`flex items-center gap-2 px-4 py-3 border-b border-borderline bg-glow`}>
                 <Icon className={`text-base ${c.text}`} aria-hidden="true" />
                 <span className={`font-mono text-xs tracking-widest ${c.text}`}>{cat.label}</span>
-                <span className="ml-auto font-mono text-[9px] text-butter/30 tracking-wider">{cat.sublabel}</span>
+                <span className="ml-auto font-mono text-[9px] text-butter/50 tracking-wider">{cat.sublabel}</span>
               </div>
 
               <SignalBar signal={cat.signal} color={cat.color} />
@@ -210,7 +210,7 @@ const Skills = () => {
               </div>
 
               <div className="flex items-center justify-between px-4 py-2 border-t border-borderline/50">
-                <span className="font-mono text-[9px] text-butter/20 tracking-widest">
+                <span className="font-mono text-[9px] text-butter/40 tracking-widest">
                   SYS:{cat.id.toUpperCase()}
                 </span>
                 <div className="flex gap-1">

@@ -93,15 +93,15 @@ const About = () => {
 
             <div className="mt-4 flex flex-wrap gap-3">
               <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
-                <span className="mb-0.5 block text-[10px] uppercase text-butter/30">COMMITS</span>
+                <span className="mb-0.5 block text-[10px] uppercase text-butter/50">COMMITS</span>
                 <span className="text-sm font-bold text-tealcyber">50+</span>
               </div>
               <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
-                <span className="mb-0.5 block text-[10px] uppercase text-butter/30">TEA</span>
+                <span className="mb-0.5 block text-[10px] uppercase text-butter/50">TEA</span>
                 <span className="text-sm font-bold text-rust">{"\u{1F375}"} {"∞"}</span>
               </div>
               <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
-                <span className="mb-0.5 block text-[10px] uppercase text-butter/30">BUGS FIXED</span>
+                <span className="mb-0.5 block text-[10px] uppercase text-butter/50">BUGS FIXED</span>
                 <span className="text-sm font-bold text-lemon/70">most of them</span>
               </div>
             </div>
