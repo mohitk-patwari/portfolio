@@ -9,63 +9,6 @@ type ProjectEntry = Omit<ProjectCardProps, "terminalLines"> & {
 const projects: ProjectEntry[] = [
   {
     index: 0,
-    title: "MicroOps Watchtower",
-    description:
-      "Microservice monitoring & automation. Real-time health tracking across distributed services with alerting.",
-    techStack: ["Node.js", "Docker", "Express", "MongoDB"],
-    repoUrl: "https://github.com/mohitk-patwari/microops-watchtower",
-    startDate: "Jan 2024",
-    endDate: "Mar 2024",
-    terminalLines: [
-      { text: '$ docker ps --format "table {{.Names}}\\t{{.Status}}"', type: "cmd" },
-      { text: "NAMES              STATUS", type: "out" },
-      { text: "api-gateway        Up 2h (healthy)", type: "out" },
-      { text: "auth-svc           Up 2h (healthy)", type: "out" },
-      { text: "monitor-daemon     Up 47m (healthy)", type: "out" },
-      { text: "$ curl localhost:3000/health", type: "cmd" },
-      { text: '{"status":"OK","uptime":7234}', type: "out" },
-    ],
-  },
-  {
-    index: 1,
-    title: "DBS Lab Project",
-    description:
-      "Advanced database system implementation. Query optimization, relational design, and performance benchmarking.",
-    techStack: ["PostgreSQL", "SQL", "Express", "Node.js"],
-    repoUrl: "https://github.com/mohitk-patwari/DBS-Lab-Project",
-    startDate: "Aug 2023",
-    endDate: "Nov 2023",
-    terminalLines: [
-      { text: "$ psql -U admin dbslab", type: "cmd" },
-      { text: "psql (15.2) — Type \\help for help.", type: "out" },
-      { text: "dbslab=# SELECT COUNT(*) FROM transactions;", type: "cmd" },
-      { text: " count: 84291", type: "out" },
-      { text: "dbslab=# EXPLAIN ANALYZE SELECT * FROM orders", type: "cmd" },
-      { text: "  Seq Scan (cost=0.00..1842.91)", type: "out" },
-      { text: "  Planning: 0.4ms  Exec: 12.8ms", type: "out" },
-    ],
-  },
-  {
-    index: 2,
-    title: "Smart Expense Tracker",
-    description:
-      "Expense tracking with visual dashboards and category analytics. Built for clarity under financial chaos.",
-    techStack: ["React", "TypeScript", "Node.js", "MongoDB"],
-    repoUrl: "https://github.com/mohitk-patwari/Smart-Expense-Tracker",
-    startDate: "Mar 2023",
-    endDate: "May 2023",
-    terminalLines: [
-      { text: "$ npm run dev", type: "cmd" },
-      { text: "> smart-expense@1.0.0 dev", type: "out" },
-      { text: "✓ compiled in 847ms", type: "out" },
-      { text: "✓ ready on http://localhost:3000", type: "out" },
-      { text: "[db] MongoDB connected", type: "out" },
-      { text: "[app] 3 budgets loaded", type: "out" },
-      { text: "[ws] live updates active", type: "out" },
-    ],
-  },
-  {
-    index: 3,
     title: "NetGuard",
     description:
       "IaC security analyzer that scans Terraform & Kubernetes in PRs. Builds network topology graphs, scores blast-radius risk with deterministic rules + LLM enrichment, and posts autofixes back to GitHub.",
@@ -84,7 +27,7 @@ const projects: ProjectEntry[] = [
     ],
   },
   {
-    index: 4,
+    index: 1,
     title: "Silent Social Debt Manager",
     description:
       "Autonomous AI agent that monitors WhatsApp, Telegram & Gmail for unanswered follow-ups. Uses NLP classification, persistent relationship memory, and Claude 3.5 to draft replies in your tone.",
@@ -103,7 +46,7 @@ const projects: ProjectEntry[] = [
     ],
   },
   {
-    index: 5,
+    index: 2,
     title: "Chart Validation System",
     description:
       "Production-grade DevSecOps API that validates charts against their stated objectives. 4-dimension scoring engine catches misleading visuals — wrong chart types, truncated axes, unreadable slices.",
@@ -119,6 +62,63 @@ const projects: ProjectEntry[] = [
       { text: "✓ parser   healthy :8001", type: "out" },
       { text: "POST /validate-chart", type: "cmd" },
       { text: '→ score: 100 | status: "valid"', type: "out" },
+    ],
+  },
+  {
+    index: 3,
+    title: "MicroOps Watchtower",
+    description:
+      "Microservice monitoring & automation. Real-time health tracking across distributed services with alerting.",
+    techStack: ["Node.js", "Docker", "Express", "MongoDB"],
+    repoUrl: "https://github.com/mohitk-patwari/microops-watchtower",
+    startDate: "Jan 2024",
+    endDate: "Mar 2024",
+    terminalLines: [
+      { text: '$ docker ps --format "table {{.Names}}\\t{{.Status}}"', type: "cmd" },
+      { text: "NAMES              STATUS", type: "out" },
+      { text: "api-gateway        Up 2h (healthy)", type: "out" },
+      { text: "auth-svc           Up 2h (healthy)", type: "out" },
+      { text: "monitor-daemon     Up 47m (healthy)", type: "out" },
+      { text: "$ curl localhost:3000/health", type: "cmd" },
+      { text: '{"status":"OK","uptime":7234}', type: "out" },
+    ],
+  },
+  {
+    index: 4,
+    title: "DBS Lab Project",
+    description:
+      "Advanced database system implementation. Query optimization, relational design, and performance benchmarking.",
+    techStack: ["PostgreSQL", "SQL", "Express", "Node.js"],
+    repoUrl: "https://github.com/mohitk-patwari/DBS-Lab-Project",
+    startDate: "Aug 2023",
+    endDate: "Nov 2023",
+    terminalLines: [
+      { text: "$ psql -U admin dbslab", type: "cmd" },
+      { text: "psql (15.2) — Type \\help for help.", type: "out" },
+      { text: "dbslab=# SELECT COUNT(*) FROM transactions;", type: "cmd" },
+      { text: " count: 84291", type: "out" },
+      { text: "dbslab=# EXPLAIN ANALYZE SELECT * FROM orders", type: "cmd" },
+      { text: "  Seq Scan (cost=0.00..1842.91)", type: "out" },
+      { text: "  Planning: 0.4ms  Exec: 12.8ms", type: "out" },
+    ],
+  },
+  {
+    index: 5,
+    title: "Smart Expense Tracker",
+    description:
+      "Expense tracking with visual dashboards and category analytics. Built for clarity under financial chaos.",
+    techStack: ["React", "TypeScript", "Node.js", "MongoDB"],
+    repoUrl: "https://github.com/mohitk-patwari/Smart-Expense-Tracker",
+    startDate: "Mar 2023",
+    endDate: "May 2023",
+    terminalLines: [
+      { text: "$ npm run dev", type: "cmd" },
+      { text: "> smart-expense@1.0.0 dev", type: "out" },
+      { text: "✓ compiled in 847ms", type: "out" },
+      { text: "✓ ready on http://localhost:3000", type: "out" },
+      { text: "[db] MongoDB connected", type: "out" },
+      { text: "[app] 3 budgets loaded", type: "out" },
+      { text: "[ws] live updates active", type: "out" },
     ],
   },
 ];
