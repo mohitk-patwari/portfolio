@@ -91,7 +91,7 @@ const useScrambleText = (finalText: string, options: ScrambleOptions = {}) => {
       return () => clearTimers();
     }
 
-    const timeoutId = window.setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       triggerScramble();
     }, delay);
 

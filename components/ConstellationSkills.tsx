@@ -95,13 +95,16 @@ const ConstellationSkills = () => {
   const nodeMap = new Map(nodes.map((node) => [node.id, node]));
 
   useEffect(() => {
+    const svgEl = svgRef.current;
+    if (!svgEl) return;
+
     const scope = createScope({ root: svgRef }).add(() => {
       animate(".edge-hub", {
         opacity: [0, 0.6],
         duration: 800,
         delay: stagger(60),
         ease: "outQuad",
-        autoplay: onScroll({ target: svgRef.current, enter: "top 85%", once: true }),
+        autoplay: onScroll({ target: svgEl, enter: "top 85%", repeat: false }),
       });
 
       animate(".edge-skill", {
@@ -109,7 +112,7 @@ const ConstellationSkills = () => {
         duration: 600,
         delay: stagger(20),
         ease: "outQuad",
-        autoplay: onScroll({ target: svgRef.current, enter: "top 80%", once: true }),
+        autoplay: onScroll({ target: svgEl, enter: "top 80%", repeat: false }),
       });
 
       animate(".node-circle", {
@@ -118,7 +121,7 @@ const ConstellationSkills = () => {
         duration: 400,
         delay: stagger(25, { start: 400 }),
         ease: "outBack(1.5)",
-        autoplay: onScroll({ target: svgRef.current, enter: "top 80%", once: true }),
+        autoplay: onScroll({ target: svgEl, enter: "top 80%", repeat: false }),
       });
 
       animate(".node-label", {
@@ -126,7 +129,7 @@ const ConstellationSkills = () => {
         duration: 300,
         delay: stagger(20, { start: 700 }),
         ease: "outQuad",
-        autoplay: onScroll({ target: svgRef.current, enter: "top 80%", once: true }),
+        autoplay: onScroll({ target: svgEl, enter: "top 80%", repeat: false }),
       });
 
       animate(".hub-ring", {

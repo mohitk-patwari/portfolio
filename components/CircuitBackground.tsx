@@ -10,6 +10,8 @@ const CircuitBackground = ({ className }: CircuitBackgroundProps) => {
 
   useEffect(() => {
     const scope = createScope({ root: svgRef }).add(() => {
+      if (!svgRef.current) return;
+
       animate(createDrawable(".circuit-main path"), {
         draw: ["0 0", "0 1"],
         ease: "linear",

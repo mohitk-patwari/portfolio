@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { animate, createDrawable, createScope, stagger } from "animejs";
+import { animate, createDrawable, createScope, onScroll, stagger } from "animejs";
 
 type CircuitTracesProps = {
   className?: string;
@@ -21,13 +21,12 @@ const CircuitTraces = ({ className }: CircuitTracesProps) => {
           duration: 1200,
           delay: i * 180,
           ease: "linear",
-          autoplay: {
-            type: "scroll",
+          autoplay: onScroll({
             target: svgEl,
             enter: "bottom 90%",
             leave: "top 10%",
             sync: true,
-          },
+          }),
         });
       });
 
@@ -38,13 +37,12 @@ const CircuitTraces = ({ className }: CircuitTracesProps) => {
           duration: 900,
           delay: i * 120 + 400,
           ease: "linear",
-          autoplay: {
-            type: "scroll",
+          autoplay: onScroll({
             target: svgEl,
             enter: "bottom 90%",
             leave: "top 10%",
             sync: true,
-          },
+          }),
         });
       });
 
@@ -54,11 +52,10 @@ const CircuitTraces = ({ className }: CircuitTracesProps) => {
         duration: 400,
         delay: stagger(80, { start: 600 }),
         ease: "outBack(2)",
-        autoplay: {
-          type: "scroll",
+        autoplay: onScroll({
           target: svgEl,
           enter: "bottom 85%",
-        },
+        }),
       });
     });
 
