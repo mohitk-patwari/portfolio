@@ -1,6 +1,6 @@
-﻿import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { motion } from "framer-motion";
 import GlitchText from "./GlitchText";
+import CharacterSelect from "./CharacterSelect";
 
 const About = () => {
   return (
@@ -28,53 +28,10 @@ const About = () => {
         />
 
         <div className="mt-12 grid grid-cols-1 gap-16 lg:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div className="space-y-5 font-body text-base leading-[1.8] text-butter/80">
-              <p>
-                I&apos;m a final-year engineering student who builds things that
-                feel alive - not just functional. My work sits at the edge of
-                clean architecture and creative expression.
-              </p>
-              <p>
-                I approach every project like a workshop problem: identify the
-                chaos, engineer the solution, then make it beautiful.
-                Performance and aesthetics aren&apos;t opposites -
-                they&apos;re collaborators.
-              </p>
-              <p>
-                When I&apos;m not coding, I&apos;m thinking about interfaces,
-                systems, and why some digital experiences feel like home and
-                others feel like waiting rooms.
-              </p>
-            </div>
+          {/* ── LEFT: RPG Character Selector ── */}
+          <CharacterSelect />
 
-            <div className="mt-8 flex gap-4">
-              <a
-                href="https://www.linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn profile"
-                className="cyber-focus rounded-sm text-2xl text-butter/50 transition hover:text-lemon hover:glow-lemon"
-              >
-                <FaLinkedin />
-              </a>
-              <a
-                href="https://github.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub profile"
-                className="cyber-focus rounded-sm text-2xl text-butter/50 transition hover:text-tealcyber"
-              >
-                <FaGithub />
-              </a>
-            </div>
-          </motion.div>
-
+          {/* ── RIGHT: Terminal block (unchanged) ── */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -141,7 +98,7 @@ const About = () => {
               </div>
               <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
                 <span className="mb-0.5 block text-[10px] uppercase text-butter/30">TEA</span>
-                <span className="text-sm font-bold text-rust">{"\u{1F375}"} {"\u221E"}</span>
+                <span className="text-sm font-bold text-rust">{"\u{1F375}"} {"∞"}</span>
               </div>
               <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
                 <span className="mb-0.5 block text-[10px] uppercase text-butter/30">BUGS FIXED</span>
@@ -150,7 +107,7 @@ const About = () => {
             </div>
 
             <div className="mt-6 inline-flex rounded-full border border-rust/40 bg-rust/15 px-3 py-1 font-mono text-xs text-rust">
-              {"\u26A1 Open to opportunities"}
+              {"⚡ Open to opportunities"}
             </div>
           </motion.div>
         </div>
@@ -160,4 +117,3 @@ const About = () => {
 };
 
 export default About;
-

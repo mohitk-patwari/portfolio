@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
@@ -6,9 +8,16 @@ import Education from "../components/Education";
 import Skills from "../components/Skills";
 import CircuitTraces from "../components/CircuitTraces";
 import Projects from "../components/Projects";
+import Contact from "../components/Contact";
 import NavDrawer from "../components/NavDrawer";
+import PortalTransition from "../components/PortalTransition";
+
+type PortalTheme = "drawing" | "wildlife";
 
 const Home = () => {
+  const router = useRouter();
+  const [portal, setPortal] = useState<{ dest: string; theme: PortalTheme } | null>(null);
+
   return (
     <>
       <Head>
@@ -58,7 +67,62 @@ const Home = () => {
         <div className="section-bg-diagonal section-panel-top overflow-hidden">
           <Projects />
         </div>
+        <CircuitTraces className="w-full h-24 opacity-40" />
+        <section id="creative" className="section mx-auto max-w-6xl px-6">
+          <p className="mono-label">// THERE_IS_MORE</p>
+          <h2 className="font-display text-3xl md:text-4xl text-lemon glow-lemon mt-2">
+            Other Dimensions
+          </h2>
+          <p className="font-body text-butter/60 mt-2 max-w-lg">
+            The operator exists beyond the terminal. Enter if you are curious.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+            <button
+              type="button"
+              onClick={() => setPortal({ dest: "/creative/drawing", theme: "drawing" })}
+              className="group cursor-pointer rounded-xl border border-rust/30 bg-royal p-6 text-left transition-all duration-300 hover:border-rust/60 hover:bg-glow"
+            >
+              <p className="mono-label text-rust/60">CREATIVE_OUTPUT</p>
+              <p className="font-display text-2xl text-rust mt-2">Drawing</p>
+              <p className="font-body text-sm text-butter/50 mt-2">
+                Sketches, fan art, ink work.
+              </p>
+              <span className="inline-block text-rust mt-2 transition-transform group-hover:translate-x-2">
+                →
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setPortal({ dest: "/creative/wildlife", theme: "wildlife" })}
+              className="group cursor-pointer rounded-xl border border-tealcyber/30 bg-royal p-6 text-left transition-all duration-300 hover:border-tealcyber/60 hover:bg-glow"
+            >
+              <p className="mono-label text-tealcyber/60">FIELD_RECON</p>
+              <p className="font-display text-2xl text-tealcyber mt-2">Wildlife</p>
+              <p className="font-body text-sm text-butter/50 mt-2">
+                Butterflies, moths, fungi, one cat.
+              </p>
+              <span className="inline-block text-tealcyber mt-2 transition-transform group-hover:translate-x-2">
+                →
+              </span>
+            </button>
+          </div>
+        </section>
+        <CircuitTraces className="w-full h-24 opacity-40" />
+        <div className="section-bg-dots section-panel-top overflow-hidden">
+          <Contact />
+        </div>
       </main>
+
+      <PortalTransition
+        isActive={portal !== null}
+        destination={portal?.dest ?? ""}
+        theme={portal?.theme ?? "drawing"}
+        onComplete={() => {
+          if (portal) router.push(portal.dest);
+        }}
+      />
     </>
   );
 };

@@ -27,7 +27,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden"
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden overflow-x-hidden"
     >
       {/* Decorative background elements */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -61,7 +61,7 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="space-y-1">
+            <motion.div variants={itemVariants} className="space-y-1 overflow-hidden">
               <GlitchText
                 text="MOHIT"
                 as="h1"
@@ -69,19 +69,22 @@ const Hero = () => {
                 animDelay={200}
                 scrambleDuration={1400}
               />
-              <GlitchText
-                text="PATWARI"
-                as="h1"
-                className="font-display font-black text-6xl md:text-8xl lg:text-9xl leading-none tracking-tighter text-lemon glow-lemon"
-                scrambleOnHover={true}
-                animDelay={500}
-                scrambleDuration={1000}
-              />
+              <div style={{ minHeight: '1.1em' }}>
+                <GlitchText
+                  text="PATWARI"
+                  as="h1"
+                  className="font-display font-black text-6xl md:text-8xl lg:text-9xl leading-none tracking-tighter text-lemon glow-lemon"
+                  scrambleOnHover={true}
+                  animDelay={500}
+                  scrambleDuration={1000}
+                />
+              </div>
             </motion.div>
 
             <motion.p
               variants={itemVariants}
-              className="mt-6 font-mono text-lg text-tealcyber glow-teal md:text-xl"
+              className="mt-6 font-mono text-lg text-tealcyber glow-teal md:text-xl whitespace-nowrap overflow-hidden"
+              style={{ minHeight: '1.5em' }}
             >
               Engineer. Builder. ML Enthusiast. Digital dimension explorer.
             </motion.p>
@@ -132,16 +135,21 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* ── Right column — character ── */}
-          <motion.div
-            variants={itemVariants}
-            className="hidden lg:flex justify-center items-center"
-            aria-hidden="true"
-          >
-            <CharacterIllustration className="h-[460px] w-auto drop-shadow-[0_0_40px_#FF9F1C18]" />
-          </motion.div>
+          {/* ── Right column — spacer (character rendered independently below) ── */}
+          <div className="hidden lg:block" aria-hidden="true" />
 
         </div>
+      </motion.div>
+
+      {/* ── Character illustration — decoupled from text stagger animation ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[40%] items-center justify-center lg:flex"
+        aria-hidden="true"
+      >
+        <CharacterIllustration className="h-[460px] w-auto drop-shadow-[0_0_40px_#FF9F1C18]" />
       </motion.div>
     </section>
   );

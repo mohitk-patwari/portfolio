@@ -6,9 +6,10 @@ import {
   type MouseEvent as ReactMouseEvent,
 } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import Logo from "./Logo";
 
-type SectionId = "home" | "about" | "education" | "skills" | "projects";
+type SectionId = "home" | "about" | "education" | "skills" | "projects" | "contact";
 
 type NavItem = {
   id: SectionId;
@@ -22,6 +23,7 @@ const navItems: NavItem[] = [
   { id: "education", label: "Education", href: "#education" },
   { id: "skills", label: "Skills", href: "#skills" },
   { id: "projects", label: "Projects", href: "#projects" },
+  { id: "contact", label: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
@@ -123,6 +125,13 @@ const Navbar = () => {
             );
           })}
         </ul>
+
+        <Link
+          href="/creative"
+          className="cyber-focus px-1 py-2 font-mono text-sm text-butter/70 hover:text-rust transition-colors duration-200"
+        >
+          Creative
+        </Link>
 
         <div className="hidden items-center md:flex">
           <span className="h-2 w-2 rounded-full bg-tealcyber animate-pulse-slow" />

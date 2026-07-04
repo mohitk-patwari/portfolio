@@ -164,6 +164,15 @@ body {
   100% { transform: translateX(-50%); }
 }
 
+/* ── Portal transition (creative gateway) ─────────────── */
+@keyframes portal-rgb-jitter {
+  0%, 100% { transform: translate(0, 0); }
+  20%      { transform: translate(-3px, 1px); }
+  40%      { transform: translate(3px, -1px); }
+  60%      { transform: translate(-2px, 2px); }
+  80%      { transform: translate(2px, -2px); }
+}
+
 .ticker-track {
   animation: ticker 28s linear infinite;
 }

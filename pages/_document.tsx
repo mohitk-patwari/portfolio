@@ -12,7 +12,7 @@ export default function Document() {
         />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;600&display=swap"
         />
       </Head>
       <body>
