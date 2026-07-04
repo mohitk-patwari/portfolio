@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 import GlitchText from "./GlitchText";
+import CharacterSelect from "./CharacterSelect";
 
 const About = () => {
   return (
     <section
       id="about"
       className="section relative mx-auto max-w-6xl overflow-hidden px-6"
-      aria-labelledby="about-heading"
+      aria-label="About Me"
     >
       <div
         aria-hidden="true"
@@ -24,57 +24,14 @@ const About = () => {
           className="font-display text-3xl md:text-4xl text-lemon glow-lemon mt-2"
           scrambleOnHover={true}
           animDelay={100}
-          scrambleDuration={800}
+          scrambleDuration={600}
         />
 
         <div className="mt-12 grid grid-cols-1 gap-16 lg:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div className="space-y-5 font-body text-base leading-[1.8] text-butter/80">
-              <p>
-                I&apos;m a final-year engineering student who builds things that
-                feel alive - not just functional. My work sits at the edge of
-                clean architecture and creative expression.
-              </p>
-              <p>
-                I approach every project like a workshop problem: identify the
-                chaos, engineer the solution, then make it beautiful.
-                Performance and aesthetics aren&apos;t opposites -
-                they&apos;re collaborators.
-              </p>
-              <p>
-                When I&apos;m not coding, I&apos;m thinking about interfaces,
-                systems, and why some digital experiences feel like home and
-                others feel like waiting rooms.
-              </p>
-            </div>
+          {/* ── LEFT: RPG Character Selector ── */}
+          <CharacterSelect />
 
-            <div className="mt-8 flex gap-4">
-              <a
-                href="https://www.linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn profile"
-                className="cyber-focus rounded-sm text-2xl text-butter/50 transition hover:text-lemon hover:glow-lemon"
-              >
-                <FaLinkedin />
-              </a>
-              <a
-                href="https://github.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub profile"
-                className="cyber-focus rounded-sm text-2xl text-butter/50 transition hover:text-tealcyber"
-              >
-                <FaGithub />
-              </a>
-            </div>
-          </motion.div>
-
+          {/* ── RIGHT: Terminal block (unchanged) ── */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -95,27 +52,32 @@ const About = () => {
                 <p className="flex items-center gap-2">
                   <span className="text-tealcyber">$ whoami</span>
                   <span className="text-borderline">→</span>
-                  <span className="text-butter/70">creative-engineer</span>
+                  <span className="text-butter/70">builder-of-things</span>
+                </p>
+                <p className="flex items-center gap-2">
+                  <span className="text-tealcyber">$ cat role.txt</span>
+                  <span className="text-borderline">→</span>
+                  <span className="text-butter/70">engineer • ml enthusiast • problem solver</span>
                 </p>
                 <p className="flex items-center gap-2">
                   <span className="text-tealcyber">$ uname -a</span>
                   <span className="text-borderline">→</span>
-                  <span className="text-butter/70">NextJS 14 • TypeScript • Tailwind</span>
+                  <span className="text-butter/70">Next.js • Python • TypeScript • Node.js</span>
                 </p>
                 <p className="flex items-center gap-2">
                   <span className="text-tealcyber">$ uptime</span>
                   <span className="text-borderline">→</span>
-                  <span className="text-butter/70">4 years learning, still going</span>
+                  <span className="text-butter/70">final year CS student, still shipping</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber">$ git log --oneline</span>
+                  <span className="text-tealcyber">$ git log</span>
                   <span className="text-borderline">→</span>
-                  <span className="text-butter/70">3 projects • many commits</span>
+                  <span className="text-butter/70">see projects ↓</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-tealcyber">$ cat interests.txt</span>
+                  <span className="text-tealcyber">$ cat interests</span>
                   <span className="text-borderline">→</span>
-                  <span className="text-butter/70">systems, interfaces, coffee</span>
+                  <span className="text-butter/70">systems, data, interfaces, tea</span>
                 </p>
                 <p className="flex items-center gap-2">
                   <span className="text-tealcyber">$ echo $STATUS</span>
@@ -132,11 +94,11 @@ const About = () => {
             <div className="mt-4 flex flex-wrap gap-3">
               <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
                 <span className="mb-0.5 block text-[10px] uppercase text-butter/30">COMMITS</span>
-                <span className="text-sm font-bold text-tealcyber">100+</span>
+                <span className="text-sm font-bold text-tealcyber">50+</span>
               </div>
               <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
-                <span className="mb-0.5 block text-[10px] uppercase text-butter/30">COFFEE</span>
-                <span className="text-sm font-bold text-rust">∞</span>
+                <span className="mb-0.5 block text-[10px] uppercase text-butter/30">TEA</span>
+                <span className="text-sm font-bold text-rust">{"\u{1F375}"} {"∞"}</span>
               </div>
               <div className="rounded-lg border border-borderline bg-sapphire px-3 py-2 font-mono text-xs">
                 <span className="mb-0.5 block text-[10px] uppercase text-butter/30">BUGS FIXED</span>
@@ -145,7 +107,7 @@ const About = () => {
             </div>
 
             <div className="mt-6 inline-flex rounded-full border border-rust/40 bg-rust/15 px-3 py-1 font-mono text-xs text-rust">
-              {"\u26A1 Open to opportunities"}
+              {"⚡ Open to opportunities"}
             </div>
           </motion.div>
         </div>

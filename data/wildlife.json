@@ -1,0 +1,128 @@
+{
+  "a female Ground Skimmer (Diplacodes trivialis)..jpg": {
+    "name": "Female Ground Skimmer",
+    "scientific": "Diplacodes trivialis",
+    "fact": "Female ground skimmers are yellow-olive in color unlike the powder-blue males — nature's way of keeping them camouflaged while resting on the ground.",
+    "tag": "ODONATA"
+  },
+  "carpenter bee.jpg": {
+    "name": "Carpenter Bee",
+    "scientific": "Xylocopa sp.",
+    "fact": "Carpenter bees can drill perfectly circular holes into wood using only their mandibles — no tools, no help, just raw jaw power.",
+    "tag": "HYMENOPTERA"
+  },
+  "Common Baron butterfly (Euthalia aconthea).jpg": {
+    "name": "Common Baron",
+    "scientific": "Euthalia aconthea",
+    "fact": "Common Baron caterpillars mimic mango leaves so perfectly that even careful observers miss them.",
+    "tag": "LEPIDOPTERA"
+  },
+  "Common Castor (Ariadne merione).jpg": {
+    "name": "Common Castor",
+    "scientific": "Ariadne merione",
+    "fact": "The Common Castor rests with wings spread flat, basking openly on leaf surfaces to absorb heat — unlike most butterflies that fold their wings upright.",
+    "tag": "LEPIDOPTERA"
+  },
+  "Common Jezebel (Delias eucharis).jpg": {
+    "name": "Common Jezebel",
+    "scientific": "Delias eucharis",
+    "fact": "The vivid yellow and red underside signals toxicity to predators — a warning acquired from its larval host plants.",
+    "tag": "LEPIDOPTERA"
+  },
+  "Common Mormon.jpg": {
+    "name": "Common Mormon",
+    "scientific": "Papilio polytes",
+    "fact": "The female Common Mormon appears in multiple forms, each mimicking a different toxic butterfly species to avoid being eaten.",
+    "tag": "LEPIDOPTERA"
+  },
+  "fluffy grey Persian kitten.png": {
+    "name": "Persian Kitten",
+    "scientific": "Felis catus",
+    "fact": "Persian cats have the flattest faces of any cat breed — a trait selectively bred over centuries, though it makes them champion snorers.",
+    "tag": "FELIDAE"
+  },
+  "Great Eggfly (Hypolimnas bolina), also known as the Blue Moon Butterfly..jpg": {
+    "name": "Great Eggfly",
+    "scientific": "Hypolimnas bolina",
+    "fact": "Great Eggfly males are fiercely territorial and will chase away anything that enters their patch — including birds many times their size.",
+    "tag": "LEPIDOPTERA"
+  },
+  "Ground Skimmer (Diplacodes trivialis).jpg": {
+    "name": "Ground Skimmer",
+    "scientific": "Diplacodes trivialis",
+    "fact": "One of the smallest dragonflies in Asia. Males turn vivid powder-blue as they mature — like a status upgrade written in pigment.",
+    "tag": "ODONATA"
+  },
+  "Handmaiden Moth (Syntomoides imaon),.jpg": {
+    "name": "Handmaiden Moth",
+    "scientific": "Syntomoides imaon",
+    "fact": "Despite mimicking a wasp with striped warning colors, this moth is completely harmless — a master of deception that has never needed a stinger.",
+    "tag": "LEPIDOPTERA"
+  },
+  "Hollyhock plant (Alcea rosea) and a bee for pollen.jpg": {
+    "name": "Hollyhock & Bee",
+    "scientific": "Alcea rosea",
+    "fact": "Hollyhock flowers open from the bottom of the stalk upward over weeks — giving pollinators a continuous reason to return all season long.",
+    "tag": "FLORA"
+  },
+  "IMG_20240609_145014.jpg": {
+    "name": "Field Observation",
+    "scientific": "Unknown specimen",
+    "fact": "Some of the most interesting discoveries happen when you stop looking for something specific and just pay attention to what is already there.",
+    "tag": "UNCLASSIFIED"
+  },
+  "male Plains Cupid (Chilades pandava).jpg": {
+    "name": "Plains Cupid (Male)",
+    "scientific": "Chilades pandava",
+    "fact": "The iridescent blue comes not from pigment but from microscopic structures on the wing scales that scatter light like a prism.",
+    "tag": "LEPIDOPTERA"
+  },
+  "Plains Cupid (Luthrodes pandava).jpg": {
+    "name": "Plains Cupid",
+    "scientific": "Chilades pandava",
+    "fact": "Its caterpillars feed almost exclusively on cycad leaves — one of the oldest plant lineages on Earth, predating the dinosaurs.",
+    "tag": "LEPIDOPTERA"
+  },
+  "Red-waisted florella moth (Syngamia florella).jpg": {
+    "name": "Red-waisted Florella Moth",
+    "scientific": "Syngamia florella",
+    "fact": "The vivid red abdomen is an honest warning signal — advertising that it tastes terrible to anything that might consider eating it.",
+    "tag": "LEPIDOPTERA"
+  },
+  "Reishi (Ganoderma lucidum).jpg": {
+    "name": "Reishi Mushroom",
+    "scientific": "Ganoderma lucidum",
+    "fact": "Used in East Asian medicine for over 2000 years. Modern research confirms it contains compounds that genuinely modulate immune response.",
+    "tag": "FUNGI"
+  },
+  "Reishi mushroom (Ganoderma lucidum).jpg": {
+    "name": "Reishi Mushroom",
+    "scientific": "Ganoderma lucidum",
+    "fact": "The glossy varnished cap is just the fruiting body of a vast hidden network digesting dead wood from the inside out.",
+    "tag": "FUNGI"
+  },
+  "Spoladea recurvalis.jpg": {
+    "name": "Beet Webworm Moth",
+    "scientific": "Spoladea recurvalis",
+    "fact": "Its caterpillars web together leaves to create protected feeding chambers — tiny architects of their own fortresses.",
+    "tag": "LEPIDOPTERA"
+  },
+  "Tailed Jay (Graphium agamemnon).jpg": {
+    "name": "Tailed Jay",
+    "scientific": "Graphium agamemnon",
+    "fact": "One of the fastest flying butterflies in Asia — it almost always feeds with rapidly beating wings, never fully landing.",
+    "tag": "LEPIDOPTERA"
+  },
+  "Tailed Jay butterfly.jpg": {
+    "name": "Tailed Jay",
+    "scientific": "Graphium agamemnon",
+    "fact": "The green spots are transparent windows where scales are absent — light passes through and scatters as vivid green.",
+    "tag": "LEPIDOPTERA"
+  },
+  "Tamil Bushbrown (Mycalesis subdita),.jpg": {
+    "name": "Tamil Bushbrown",
+    "scientific": "Mycalesis subdita",
+    "fact": "The eyespots on its wings function as decoys — predators strike the wing edge instead of the body, and the butterfly escapes.",
+    "tag": "LEPIDOPTERA"
+  }
+}

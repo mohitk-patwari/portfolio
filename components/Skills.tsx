@@ -1,86 +1,156 @@
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FiMonitor, FiServer, FiTool } from "react-icons/fi";
+import { animate } from "animejs";
+import {
+  FiCode, FiServer, FiDatabase, FiCpu, FiTool, FiLayers
+} from "react-icons/fi";
 import type { IconType } from "react-icons";
 import GlitchText from "./GlitchText";
 
-type SkillCategory = {
-  name: "Frontend" | "Backend" | "Tools";
+type Category = {
+  id: string;
+  label: string;
+  sublabel: string;
   icon: IconType;
+  color: "tealcyber" | "lemon" | "rust";
+  signal: number;
   skills: string[];
+  experimental?: boolean;
 };
 
-const skillsData: SkillCategory[] = [
+const categories: Category[] = [
   {
-    name: "Frontend",
-    icon: FiMonitor,
-    skills: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "HTML5",
-      "CSS3",
-    ],
+    id: "lang",
+    label: "LANGUAGES",
+    sublabel: "CORE_RUNTIME",
+    icon: FiCode,
+    color: "tealcyber",
+    signal: 95,
+    skills: ["Java", "Python", "JavaScript", "TypeScript", "SQL", "C", "R"],
   },
   {
-    name: "Backend",
+    id: "backend",
+    label: "BACKEND & WEB",
+    sublabel: "SVC_LAYER",
     icon: FiServer,
-    skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs"],
+    color: "lemon",
+    signal: 88,
+    skills: ["Node.js", "Express.js", "Next.js", "RESTful APIs"],
   },
   {
-    name: "Tools",
+    id: "db",
+    label: "DATABASES",
+    sublabel: "PERSISTENCE_LAYER",
+    icon: FiDatabase,
+    color: "tealcyber",
+    signal: 82,
+    skills: ["MySQL", "PostgreSQL", "MongoDB"],
+  },
+  {
+    id: "ml",
+    label: "ML & DATA",
+    sublabel: "NEURAL_OPS",
+    icon: FiCpu,
+    color: "rust",
+    signal: 78,
+    skills: [
+      "scikit-learn", "Pandas", "NumPy", "Matplotlib",
+      "Feature Engineering", "Supervised Learning", "Anomaly Detection",
+    ],
+    experimental: true,
+  },
+  {
+    id: "devops",
+    label: "DEVOPS & TOOLS",
+    sublabel: "ENV_CONTROL",
     icon: FiTool,
-    skills: ["Git", "GitHub", "Docker", "Vercel", "VS Code", "Linux"],
+    color: "lemon",
+    signal: 90,
+    skills: ["Docker", "Git", "Linux", "n8n", "⚡ChatGPT", "⚡Gemini", "claude code"],
+  },
+  {
+    id: "cs",
+    label: "CORE CS",
+    sublabel: "FOUNDATION",
+    icon: FiLayers,
+    color: "tealcyber",
+    signal: 85,
+    skills: ["DSA", "DBMS", "Operating Systems", "System Design"],
   },
 ];
 
+const colorMap = {
+  tealcyber: {
+    text: "text-tealcyber",
+    border: "border-tealcyber/40",
+    bg: "bg-tealcyber/10",
+    bar: "bg-tealcyber",
+    dot: "bg-tealcyber",
+    hoverBorder: "hover:border-tealcyber",
+    hoverText: "hover:text-tealcyber",
+    hoverBg: "hover:bg-tealcyber/5",
+  },
+  lemon: {
+    text: "text-lemon",
+    border: "border-lemon/40",
+    bg: "bg-lemon/10",
+    bar: "bg-lemon",
+    dot: "bg-lemon",
+    hoverBorder: "hover:border-lemon",
+    hoverText: "hover:text-lemon",
+    hoverBg: "hover:bg-lemon/5",
+  },
+  rust: {
+    text: "text-rust",
+    border: "border-rust/40",
+    bg: "bg-rust/10",
+    bar: "bg-rust",
+    dot: "bg-rust",
+    hoverBorder: "hover:border-rust",
+    hoverText: "hover:text-rust",
+    hoverBg: "hover:bg-rust/5",
+  },
+};
+
+const SignalBar = ({ signal, color }: { signal: number; color: keyof typeof colorMap }) => {
+  const barRef = useRef<HTMLDivElement>(null);
+  const [triggered, setTriggered] = useState(false);
+
+  useEffect(() => {
+    const el = barRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setTriggered(true); observer.disconnect(); } },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={barRef} className="h-[2px] w-full bg-borderline/50 overflow-hidden">
+      <div
+        className={`h-full ${colorMap[color].bar} transition-all duration-[1200ms] ease-out`}
+        style={{ width: triggered ? `${signal}%` : "0%" }}
+      />
+    </div>
+  );
+};
+
 const containerVariants = {
   hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  },
-};
-
-const pillContainerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.05,
-    },
-  },
-};
-
-const pillVariants = {
-  hidden: { opacity: 0, y: 8 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.25,
-      ease: "easeOut",
-    },
-  },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const Skills = () => {
   return (
     <section id="skills" className="section mx-auto max-w-6xl px-6" aria-labelledby="skills-heading">
-      <p className="mono-label">// TECH_STACK.json</p>
+      <p className="mono-label">// EQUIPMENT_MANIFEST.hud</p>
       <GlitchText
         text="Skills"
         as="h2"
@@ -90,58 +160,68 @@ const Skills = () => {
         scrambleDuration={600}
       />
 
-      <div className="mt-8 mb-6 flex flex-wrap gap-4 font-mono text-[10px] tracking-widest text-butter/25">
-        <span>
-          LOADING: <span className="text-tealcyber/50">TECH_STACK.json</span>
-        </span>
-        <span>
-          MODULES: <span className="text-tealcyber/50">17 loaded</span>
-        </span>
-        <span>
-          ERRORS: <span className="text-rust/50">0</span>
-        </span>
-        <span className="ml-auto">v2.0.4</span>
-      </div>
-
       <motion.div
-        className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+        className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.15 }}
         variants={containerVariants}
       >
-        {skillsData.map((category) => {
-          const Icon = category.icon;
+        {categories.map((cat) => {
+          const Icon = cat.icon;
+          const c = colorMap[cat.color];
           return (
             <motion.article
-              key={category.name}
+              key={cat.id}
               variants={cardVariants}
-              className="rounded-xl border border-borderline bg-royal p-6 transition-all duration-300 hover:glow-box-teal"
+              className="relative flex flex-col rounded-xl border border-borderline bg-royal overflow-hidden"
             >
-              <div className="flex items-center">
-                <span className="mr-2 inline-block h-1.5 w-1.5 animate-pulse-slow rounded-full bg-tealcyber" />
-                <Icon className="mr-2 text-lg text-tealcyber" aria-hidden="true" />
-                <h3 className="font-mono text-xs uppercase tracking-widest text-tealcyber">
-                  {category.name}
-                </h3>
+              {cat.experimental && (
+                <div
+                  className="flex items-center gap-2 px-3 py-1.5 bg-rust/15 border-b border-rust/30"
+                  aria-label="Experimental system"
+                >
+                  <span className="font-mono text-[9px] tracking-[0.25em] text-rust uppercase">
+                    ⚠ WARNING — EXPERIMENTAL
+                  </span>
+                  <span className="ml-auto font-mono text-[9px] text-rust/50">unstable</span>
+                </div>
+              )}
+
+              <div className={`flex items-center gap-2 px-4 py-3 border-b border-borderline bg-glow`}>
+                <Icon className={`text-base ${c.text}`} aria-hidden="true" />
+                <span className={`font-mono text-xs tracking-widest ${c.text}`}>{cat.label}</span>
+                <span className="ml-auto font-mono text-[9px] text-butter/30 tracking-wider">{cat.sublabel}</span>
               </div>
 
-              <div className="my-4 border-t border-borderline/50" />
+              <SignalBar signal={cat.signal} color={cat.color} />
 
-              <motion.div
-                className="mt-2 flex flex-wrap gap-2"
-                variants={pillContainerVariants}
-              >
-                {category.skills.map((skill) => (
-                  <motion.span
-                    key={`${category.name}-${skill}`}
-                    variants={pillVariants}
-                    className="cursor-default rounded-lg border border-borderline bg-sapphire px-3 py-1.5 font-mono text-xs text-butter/70 transition-all duration-200 hover:scale-105 hover:border-tealcyber hover:bg-tealcyber/5 hover:text-tealcyber"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </motion.div>
+              <div className="flex-1 p-4">
+                <div className="flex flex-wrap gap-2">
+                  {cat.skills.map((skill) => (
+                    <span
+                      key={`${cat.id}-${skill}`}
+                      className={`cursor-default rounded border border-borderline bg-sapphire px-2.5 py-1 font-mono text-xs text-butter/70 transition-all duration-200 ${c.hoverBorder} ${c.hoverText} ${c.hoverBg}`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between px-4 py-2 border-t border-borderline/50">
+                <span className="font-mono text-[9px] text-butter/20 tracking-widest">
+                  SYS:{cat.id.toUpperCase()}
+                </span>
+                <div className="flex gap-1">
+                  {[...Array(3)].map((_, i) => (
+                    <span
+                      key={i}
+                      className={`h-1.5 w-1.5 rounded-full ${i < Math.ceil((cat.signal / 100) * 3) ? c.dot : "bg-borderline"}`}
+                    />
+                  ))}
+                </div>
+              </div>
             </motion.article>
           );
         })}
